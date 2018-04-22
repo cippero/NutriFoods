@@ -27,6 +27,7 @@ app.use(session({
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('public'));
 
 //just a convenience that makes life easier:
 app.use(function(req, res, next){
@@ -42,6 +43,15 @@ app.get('/', function(req,res) {
 
 app.get('/profile', isLoggedIn, function(req, res) {
 	res.render("profile");
+})
+
+app.get('/search', function(req, res) {
+	res.render("search", {food: ""});
+})
+
+app.post('/search', function(req, res) {
+	let food = "testing";
+	res.render("search", {food: food});
 })
 
 app.use('/auth', require('./routes/auth'));

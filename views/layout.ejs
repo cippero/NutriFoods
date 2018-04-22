@@ -2,26 +2,28 @@
 <html>
  <head>
    <meta charset=“UTF-8”>
-   <title>User Auth</title>
+   <title>Diets</title>
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
  </head>
  <body>
- <div class="container">
- 	<% include partials/alerts %>
-	<%- body %>
-	<hr>
-	<div class="row">
-		<div class="col-12">
-			<a href="/" class="btn btn-info">Home</a>
-			<% if(!currentUser) { %>
-				<a href="/auth/login" class="btn btn-primary">Login</a>
-				<a href="/auth/signup" class="btn btn-success">Sign Up</a>
-			<% } else { %>
-				<a href="/auth/logout" class="btn btn-warning">Log out</a>
-				<a href="/profile" class="btn btn-danger">Profile</a>
-			<% } %>
+	<div class="container">
+	 	<% include partials/alerts %>
+		<%- body %>
+		<hr>
+		<div class="row">
+			<div class="col-12">
+				<a href="/" class="btn btn-info">Home</a>
+				<a href="/search" class="btn btn-info">Search</a>
+				<% if(!currentUser) { %>
+					<a href="/auth/login" class="btn btn-info">Login</a>
+					<a href="/auth/signup" class="btn btn-info">Sign Up</a>
+				<% } else { %>
+					<a href="/auth/logout" class="btn btn-info">Log out</a>
+					<a href="/profile" class="btn btn-info">Profile</a>
+				<% } %>
+			</div>
 		</div>
 	</div>
- </div>
+ 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
  </body>
 </html>

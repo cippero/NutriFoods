@@ -1,0 +1,18 @@
+<h1>SEARCH</h1>
+<form id="searchForm">
+	<div class="form-group row">
+		<div class="col-8">
+			<!-- <label for="search">Search:</label> -->
+			<input type="text" class="form-control" name="search" placeholder="Enter items to search">
+		</div>
+		<div class="col-4">
+			<input type="submit" value="Submit" class="btn-success btn">
+		</div>
+	</div>
+</form>
+<% if(food){ %>
+	<hr>
+	<div class="container">
+		<p><% food %></p>
+	</div>
+<% } %>
