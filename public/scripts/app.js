@@ -38,17 +38,18 @@ $(document).ready(function(){
       success: handleSuccess,
       error: handleError
     });
+    $('#searchInput').val('');
   });
 
   // $('#searchForm').on('submit', function(e) {
   //   e.preventDefault();
-  //   let searchUrl = constructUrl($('#searchInput').val());
-  //   $.ajax({
-  //     method: 'GET',
-  //     url: searchUrl,
-  //     success: handleSuccess,
-  //     error: handleError
-  //   });
+    //let searchUrl = constructUrl($('#searchInput').val());
+    // $.ajax({
+    //   method: 'GET',
+    //   url: searchUrl,
+    //   success: handleSuccess,
+    //   error: handleError
+    // });
   // });
 
   // $todoList.on('click', '.deleteBtn', function() {
@@ -61,6 +62,10 @@ $(document).ready(function(){
   //   });
   // });
 
+  // $('#searchInput').change(function(e) {
+  //   console.log($('#searchInput').val());
+  // })
+
 });
 
 
@@ -69,7 +74,7 @@ $(document).ready(function(){
 
 
 function constructUrl(query){
-  return "https://api.edamam.com/api/food-database/parser?ingr=" + query + "&app_id=","&app_key=","&page=0"
+  console.log("https://api.edamam.com/api/food-database/parser?ingr=" + query + "&app_id=" + process.env.EDAMAM_ID + "&app_key=" + process.env.EDAMAM_KEY + "&page=0")
 }
 
 function getTodoHtml(task) {
@@ -140,3 +145,53 @@ function deleteTodoSuccess(json) {
 function deleteTodoError() {
   console.log('deletebook error!');
 }
+
+
+
+///////////////////////////// TYPEAHEAD /////////////////////////////////
+// var substringMatcher = function(strs) {
+//   return function findMatches(q, cb) {
+//     var matches, substringRegex;
+
+//     // an array that will be populated with substring matches
+//     matches = [];
+
+//     // regex used to determine if a string contains the substring `q`
+//     substrRegex = new RegExp(q, 'i');
+
+//     // iterate through the pool of strings and for any string that
+//     // contains the substring `q`, add it to the `matches` array
+//     $.each(strs, function(i, str) {
+//       if (substrRegex.test(str)) {
+//         matches.push(str);
+//       }
+//     });
+
+//     cb(matches);
+//   };
+// };
+
+// // var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
+// //   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
+// //   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
+// //   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
+// //   'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
+// //   'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
+// //   'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
+// //   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
+// //   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
+// // ];
+
+// $('#searchDiv .typeahead').typeahead({
+//   hint: true,
+//   highlight: true,
+//   minLength: 1
+// },
+// {
+//   // name: 'states',
+//   // source: substringMatcher(states)
+//   name: 'countries',
+//   source: substringMatcher(states)
+//   // remote: '/countries.json'
+// });
+//////////////////////////////////////////////////////////////////////

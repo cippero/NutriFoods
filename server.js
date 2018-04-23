@@ -9,6 +9,7 @@ var mongoose       = require('mongoose');
 var morgan         = require('morgan');
 var passport       = require('./config/passportConfig');
 var session        = require('express-session');
+var request        = require('request');	//necessary?
 var app            = express();
 
 ///////////////CONNECT TO DATABASE////////////////
@@ -46,13 +47,24 @@ app.get('/profile', isLoggedIn, function(req, res) {
 })
 
 app.get('/search', function(req, res) {
-	res.render("search", {food: ""});
+	res.render("search", {food: ""})
 })
 
 app.post('/search', function(req, res) {
-	console.log(req.body.search);
-	// res.render("search", {food: req.body.search});
-	res.send(req.body.search);
+	//console.log(req.body.search);
+	let query = req.body.search;
+	query = query.replace(/\s/g, '%20');
+	let searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}&page=0`;
+
+	request(searchUrl, function (error, response, body) {
+		if (error) { console.log('error:', error); }
+		if (response.statusCode !== 200) { console.log('statusCode:', response && response.statusCode); }
+		//console.log(body);
+		let result = JSON.parse(body);
+		console.log(result.parsed[0].food.label);
+	});
+
+	res.render("search", {food: req.body.search});
 })
 
 app.use('/auth', require('./routes/auth'));

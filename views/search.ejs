@@ -1,11 +1,11 @@
 <h1>SEARCH</h1>
-<form id="searchForm">
+<form id="searchForm" action="/search" method="POST">
 	<div class="form-group row">
-		<div class="col-8">
+		<div class="col-6" id="searchDiv">
 			<!-- <label for="search">Search:</label> -->
-			<input type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search">
+			<input class="typeahead form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search">
 		</div>
-		<div class="col-4">
+		<div class="col-6">
 			<input type="submit" value="Submit" class="btn-success btn">
 		</div>
 	</div>
