@@ -12,7 +12,7 @@ var session        = require('express-session');
 var app            = express();
 
 ///////////////CONNECT TO DATABASE////////////////
-mongoose.connect('mongodb://localhost/userAuth');
+mongoose.connect('mongodb://localhost/nutrifood');
 
 ////////////////SET & USE MODULES/////////////////
 app.set('view engine', 'ejs');
@@ -50,11 +50,16 @@ app.get('/search', function(req, res) {
 })
 
 app.post('/search', function(req, res) {
-	let food = "testing";
-	res.render("search", {food: food});
+	console.log(req.body.search);
+	// res.render("search", {food: req.body.search});
+	res.send(req.body.search);
 })
 
 app.use('/auth', require('./routes/auth'));
+
+app.use(function(req, res){
+    res.status(404).send('<h1>404</h1>');
+});
 
 ////////////////////LISTENING/////////////////////
 app.listen(process.env.PORT || 3000, function(){
