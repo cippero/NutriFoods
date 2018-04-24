@@ -51,21 +51,46 @@ app.get('/search', function(req, res) {
 })
 
 app.post('/search', function(req, res) {
-	//console.log(req.body.search);
 	let query = req.body.search;
 	query = query.replace(/\s/g, '%20');
 	let searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}&page=0`;
 
 	request(searchUrl, function (error, response, body) {
-		if (error) { console.log('error:', error); }
+		if (error) { return console.log('error:', error); }
 		if (response.statusCode !== 200) { console.log('statusCode:', response && response.statusCode); }
-		//console.log(body);
-		let result = JSON.parse(body);
-		console.log(result.parsed[0].food.label);
-	});
 
+		let result = JSON.parse(body);
+		let title = result.parsed[0].food.label;
+		//title = title.replace(/,.*/, '');
+		let uri = result.parsed[0].food.uri;
+
+
+		let queryIngrediant = {
+			"yield": 1,
+			"ingredients": [
+				{
+					"quantity": 10,
+					"measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+					"foodURI": uri
+				}
+			]
+		}
+
+		//queryIngrediant = JSON.stringify(queryIngrediant);
+
+		request.post({url:`https://api.edamam.com/api/food-database/nutrients?app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}`, body: JSON.stringify(queryIngrediant), headers: {'content-type': 'application/json'}}, 
+			function optionalCallback(err, httpResponse, bodyInfo) {
+				if (err) {
+			    	return console.error('upload failed:', err);
+			  	}
+			  	console.log('Upload successful!  Server responded with:', bodyInfo);
+		});
+
+	});
 	res.render("search", {food: req.body.search});
 })
+
+
 
 app.use('/auth', require('./routes/auth'));
 
