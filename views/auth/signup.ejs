@@ -2,15 +2,62 @@
 <form method="POST" action="/auth/signup">
 	<div class="form-group">
 		<label for="name">Name</label>
-		<input type="text" class="form-control" name="name" placeholder="What's your name?">
+		<input id="name" type="text" class="form-control" name="name" placeholder="Enter your name" required>
 	</div>
 	<div class="form-group">
-		<label for="name">Email</label>
-		<input type="email" class="form-control" name="email" placeholder="Enter email">
+		<label for="email">Email</label>
+		<input id="email" type="email" class="form-control" name="email" placeholder="Enter email" required>
 	</div>
 	<div class="form-group">
-		<label for="name">Password</label>
-		<input type="password" class="form-control" name="password" placeholder="Tell me your password">
+		<label for="password">Password</label>
+		<input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required>
+	</div>
+	<div class="form-group">
+		<label for="height">Height</label>
+		<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" required>
+	</div>
+	<div class="form-group">
+		<label for="weight">Weight</label>
+		<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" required>
+	</div>
+	<div class="form-group">
+		<label for="age">Age</label>
+		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" required>
+	</div>
+	<div class="form-group">
+		<p>Sex</p>
+		<div class="form-group row">
+			<div class="col-6">
+				<input type="radio" id="male"
+			     name="sex" value="male" checked>
+			    <label for="male">Male</label>
+			</div>
+			<div class="col-6">
+			    <input type="radio" id="female"
+			     name="sex" value="female">
+			    <label for="female">Female</label>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<p>Lifestyle</p>
+		<div class="form-group row">
+			<div class="col-4">
+				<input type="radio" id="sedentary"
+			     name="activityLevel" value="1" checked>
+			    <label for="sedentary">Sedentary</label>
+			</div>
+			<div class="col-4">
+			    <input type="radio" id="average"
+			     name="activityLevel" value="2">
+			    <label for="average">Average</label>
+			</div>
+			<div class="col-4">
+			    <input type="radio" id="active"
+			     name="activityLevel" value="3">
+			    <label for="active">Active</label>
+			</div>
+		</div>
 	</div>
 	<input type="submit" value="Sign Up" class="btn-success btn">
 </form>

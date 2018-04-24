@@ -38,7 +38,7 @@ $(document).ready(function(){
       success: handleSuccess,
       error: handleError
     });
-    $('#searchInput').val('');
+    //$('#searchInput').val('');
   });
 
   // $('#searchForm').on('submit', function(e) {

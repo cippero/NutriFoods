@@ -32,7 +32,8 @@ router.post('/signup', function(req, res, next) {
 			req.flash('error', 'You already exist');
 			res.redirect('/auth/login');
 		} else {
-			User.create(req.body, function(err, createdUser){
+			let newUser = req.body;
+			User.create(newUser, function(err, createdUser){
 				if (err){
 					req.flash('error', 'Something went wrong! Check the logs.');
 					return console.log('error:', err);

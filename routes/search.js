@@ -5,13 +5,15 @@ var router   = express.Router();
 
 //////////////////// ROUTES ///////////////////////
 router.get('/', function(req, res) {
-	res.render("search", {food: ""})
+	res.render("search")
 })
 
 router.post('/', function(req, res) {
 	let query = req.body.search;
 	query = query.replace(/\s/g, '%20');
 	let searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}&page=0`;
+	let quantity = parseInt(req.body.quantity);
+	let measurement = req.body.measurement;
 
 	request(searchUrl, function (error, response, body) {
 		if (error) { return console.log('error:', error); }
@@ -23,13 +25,14 @@ router.post('/', function(req, res) {
 		let title = result.parsed[0].food.label;
 		//title = title.replace(/,.*/, '');
 		let uri = result.parsed[0].food.uri;
+		let mURI = `http://www.edamam.com/ontologies/edamam.owl#Measure_${measurement}`
 
 		let queryIngrediant = {
 			"yield": 1,
 			"ingredients": [
 				{
-					"quantity": 10,
-					"measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+					"quantity": quantity,
+					"measureURI": mURI,
 					"foodURI": uri
 				}
 			]
@@ -42,10 +45,22 @@ router.post('/', function(req, res) {
 			  	}
 			  	//console.log('Upload successful!  Server responded with:', bodyInfo);
 			  	bodyInfo = JSON.parse(bodyInfo);
+			  	//saveSearch(bodyInfo);
 			  	console.log(bodyInfo.ingredients[0].parsed[0].food, bodyInfo.totalNutrients.SUGAR.quantity + bodyInfo.totalNutrients.SUGAR.unit, bodyInfo.totalNutrients.SUGAR.label);
+
+			  	res.send("testing");
+
 		});
 	});
-	res.render("search", {food: req.body.search});
 })
+
+// function saveSearch(info){
+// 	return info;
+// }
+
+// // post search results
+// router.get('/api', function (req, res) {
+//   res.json(saveSearch());
+// });
 
 module.exports = router;
