@@ -18,17 +18,6 @@ $(document).ready(function(){
   //   error: handleError
   // });
 
-  // $('#searchForm').on('submit', function(e) {
-  //   e.preventDefault();
-  //   $.ajax({
-  //     method: 'POST',
-  //     url: '/api/todo',
-  //     data: $(this).serialize(),
-  //     success: newTodoSuccess,
-  //     error: newTodoError
-  //   });
-  // });
-
    $('#searchForm').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
@@ -40,17 +29,6 @@ $(document).ready(function(){
     });
     //$('#searchInput').val('');
   });
-
-  // $('#searchForm').on('submit', function(e) {
-  //   e.preventDefault();
-    //let searchUrl = constructUrl($('#searchInput').val());
-    // $.ajax({
-    //   method: 'GET',
-    //   url: searchUrl,
-    //   success: handleSuccess,
-    //   error: handleError
-    // });
-  // });
 
   // $todoList.on('click', '.deleteBtn', function() {
   //   console.log('clicked delete button to', '/api/todo/'+$(this).attr('data-id'));
@@ -74,7 +52,7 @@ $(document).ready(function(){
 
 
 function constructUrl(query){
-  console.log("https://api.edamam.com/api/food-database/parser?ingr=" + query + "&app_id=" + process.env.EDAMAM_ID + "&app_key=" + process.env.EDAMAM_KEY + "&page=0")
+  return `https://trackapi.nutritionix.com/v2/search/instant?query=${query}`
 }
 
 function getTodoHtml(task) {
