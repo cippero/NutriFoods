@@ -1,7 +1,8 @@
 console.log("Sanity Check: JS is working!");
 let $searchItems;
+let $nutrientResults;
 let allSearches = [];
-
+let searchAuto = false;
 
 
 ////////////////////// AJAX /////////////////////////
@@ -10,18 +11,18 @@ let allSearches = [];
 $(document).ready(function(){
 
   $searchItems = $('#searchResults');
+  $nutrientResults = $('#nutrientResults');
 
   $('#searchForm').on('submit', function(e) {
     e.preventDefault();
-    // $.ajax({
-    //   method:   'POST'
-    //   ,url:     '/search'
-    //   ,data:    $(this).serialize()
-    //   ,success: handleSuccess
-    //   ,error:   handleError
-
-    // });
-    ejaxPost();
+    searchAuto = false;
+    $.ajax({
+      method:   'POST'
+      ,url:     '/search/nutrients'
+      ,data:    $(this).serialize()
+      ,success: onSuccess
+      ,error:   onError
+    });
     //$('#searchInput').val('');
   });
 
@@ -57,24 +58,24 @@ $(document).ready(function(){
 
 });
 
-
-
-//////////////////////////////// FUNCTIONS ///////////////////////////////////
-
-
-function searchChange(input){
-  console.log("input change:", input);
-  ejaxPost();
+function ejaxPost(text) {
+  if (text !== '' && searchAuto){
+    $.ajax({
+      method:   'POST'
+      ,url:     '/search'
+      ,data:    {text}
+      ,success: handleSuccess
+      ,error:   handleError
+    });
+  } else {
+    allSearches = [];
+    $searchItems.empty();
+  }
 }
 
-function ejaxPost() {
-  $.ajax({
-    method:   'POST'
-    ,url:     '/search'
-    ,data:    $(this).serialize()
-    ,success: handleSuccess
-    ,error:   handleError
-  });
+function searchChange(input){
+  //searchAuto = true;
+  ejaxPost(input);
 }
 
 function getSearchHtml(search) {
@@ -86,7 +87,12 @@ function getSearchHtml(search) {
 }
 
 function getAllSearchHtml(searches) {
-  return searches.map(getSearchHtml).join("");
+  let htmlToAppend = [];
+  for (let i = 0; i<6; i++){
+    htmlToAppend.push(getSearchHtml(searches[i]));
+  }
+  return htmlToAppend.join('');
+  //return searches.map(getSearchHtml).join("");
 }
 
 // helper function to render all searches to view
@@ -112,6 +118,14 @@ function handleSuccess(json) {
 function handleError(e) {
   console.log('POST fail', e);
 //   //$('#todoTarget').text('Failed to load todos, is the server working?');
+}
+
+function onSuccess(json) {
+  console.log("POST success, json:", json);
+}
+
+function onError(e) {
+  console.log('POST fail', e);
 }
 
 // function newTodoSuccess(json) {
@@ -143,53 +157,3 @@ function handleError(e) {
 // function deleteTodoError() {
 //   console.log('deletebook error!');
 // }
-
-
-
-///////////////////////////// TYPEAHEAD /////////////////////////////////
-// var substringMatcher = function(strs) {
-//   return function findMatches(q, cb) {
-//     var matches, substringRegex;
-
-//     // an array that will be populated with substring matches
-//     matches = [];
-
-//     // regex used to determine if a string contains the substring `q`
-//     substrRegex = new RegExp(q, 'i');
-
-//     // iterate through the pool of strings and for any string that
-//     // contains the substring `q`, add it to the `matches` array
-//     $.each(strs, function(i, str) {
-//       if (substrRegex.test(str)) {
-//         matches.push(str);
-//       }
-//     });
-
-//     cb(matches);
-//   };
-// };
-
-// // var states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-// //   'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-// //   'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-// //   'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-// //   'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-// //   'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-// //   'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-// //   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-// //   'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-// // ];
-
-// $('#searchDiv .typeahead').typeahead({
-//   hint: true,
-//   highlight: true,
-//   minLength: 1
-// },
-// {
-//   // name: 'states',
-//   // source: substringMatcher(states)
-//   name: 'countries',
-//   source: substringMatcher(states)
-//   // remote: '/countries.json'
-// });
-//////////////////////////////////////////////////////////////////////

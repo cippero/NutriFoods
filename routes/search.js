@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
 
 router.post('/', function(req, res) {
 	searchList = [];
-	let query = req.body.search;
+	let query = req.body.text;
 	let searchUrl = `https://trackapi.nutritionix.com/v2/search/instant?query=${query}`
 
 	request(searchUrl, {headers: {"x-app-id": process.env.NUTRITIONIX_ID, "x-app-key": process.env.NUTRITIONIX_KEY}}, function (error, response, body) {
@@ -22,9 +22,8 @@ router.post('/', function(req, res) {
  		let result = JSON.parse(body);
  		let currentImg;
 
- 		if (result.common[0] === undefined || result.branded[0] === undefined) { return console.log("empty search"); }
-
- 		for (let i=0; i<5; i++){
+ 		if (!result.common[0] || !result.branded[0]) { return console.log("empty search"); }
+ 		for (let i=0; i<3; i++){
  			if (typeof result.common[i].photo.thumb !== "string") {
  				currentImg = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
  			} else {
@@ -35,7 +34,7 @@ router.post('/', function(req, res) {
 				,image: currentImg
  			});
  		}
- 		for (let i=0; i<5; i++){
+ 		for (let i=0; i<3; i++){
  			if (typeof result.branded[i].photo.thumb !== "string") {
  				currentImg = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
  			} else {
@@ -46,14 +45,26 @@ router.post('/', function(req, res) {
  				,nix_brand_id: result.branded[i].nix_brand_id
 				,image:        currentImg
  			});
- 		}
+ 		};
  		res.json(searchList);
  	});
 });
 
+router.post('/nutrients', function(req, res) {
+	let query = {query: req.body.search};
+	request.post({url:`https://trackapi.nutritionix.com/v2/natural/nutrients`, body: JSON.stringify(query), headers: {'Content-Type': 'application/json', "x-app-id": process.env.NUTRITIONIX_ID, "x-app-key": process.env.NUTRITIONIX_KEY}}, function optionalCallback(err, httpResponse, body) {
+			if (err) { return console.error('upload failed:', err); }
+		  	//console.log('Upload successful!  Server responded with:', body);
+		  	body = JSON.parse(body);
+		  	console.log(body.foods);
+		  	res.json(body.foods[0]);
+		}
+	);
+});
+
 router.get('/api', function(req, res) {
 	res.json(searchList);
-})
+});
 
 // router.post('/', function(req, res) {
 // 	let query = req.body.search;

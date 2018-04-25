@@ -1,37 +1,18 @@
 <h1>SEARCH</h1>
-<form id="searchForm" action="/search" method="POST">
+<form id="searchForm">
 	<div class="form-group row">
 		<div class="col-10" id="searchDiv">
 			<!-- <label for="search">Search:</label> -->
-			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);">
+			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off">
 			<!-- <input class="typeahead form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search"> -->
 		</div>
 		<div class="col-2">
 			<input type="submit" value="Submit" class="btn-success btn">
 		</div>
 	</div>
-	<!-- <div class="form-group row">
-		<div class="col-12">
-			<input class="form-control" id ="searchQuantity" name="quantity" placeholder="Enter quantity of items" type="number" min="1" value="1" required>
-		</div>
-	</div>
-	<div class="form-group row">
-		<div class="col-4">
-			<input type="radio" id="ounce"
-		     name="measurement" value="ounce" checked>
-		    <label for="ounce">Oz</label>
-		</div>
-		<div class="col-4">
-		    <input type="radio" id="gram"
-		     name="measurement" value="gram">
-		    <label for="gram">Grams</label>
-		</div>
-		<div class="col-4">
-		    <input type="radio" id="serving"
-		     name="measurement" value="serving">
-		    <label for="serving">Servings</label>
-		</div>
-	</div> -->
 	<div id='searchResults'>
+    </div>
+    <hr>
+    <div id='nutrientResults'>
     </div>
 </form>
