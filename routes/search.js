@@ -1,7 +1,8 @@
-var express  = require('express');
-var request  = require('request');
-var router   = express.Router();
-// var User     = require('../models/user');
+var express    = require('express');
+var request    = require('request');
+var router     = express.Router();
+// var User    = require('../models/user');
+let searchList = [];
 
 //////////////////// ROUTES ///////////////////////
 router.get('/', function(req, res) {
@@ -9,6 +10,7 @@ router.get('/', function(req, res) {
 })
 
 router.post('/', function(req, res) {
+	searchList = [];
 	let query = req.body.search;
 	let searchUrl = `https://trackapi.nutritionix.com/v2/search/instant?query=${query}`
 
@@ -19,9 +21,28 @@ router.post('/', function(req, res) {
 
  		let result = JSON.parse(body);
 
- 		console.log(result.common);
- 		res.json(result);
- 	})
+ 		//console.log(result.branded[0].photo.thumb);
+ 		//res.json(result);
+
+ 		for (let i=0; i<5; i++){
+ 			searchList.push({
+ 				name:   result.common[i].food_name
+				,image: result.common[i].photo.thumb
+ 			});
+ 		}
+ 		for (let i=0; i<5; i++){
+ 			searchList.push({
+ 				name:          result.branded[i].food_name
+ 				,nix_brand_id: result.branded[i].nix_brand_id
+				,image:        result.branded[i].photo.thumb
+ 			});
+ 		}
+ 	});
+ 	res.redirect('/search/api'); //not working?
+});
+
+router.get('/api', function(req, res) {
+	res.json(searchList);
 })
 
 // router.post('/', function(req, res) {

@@ -11,13 +11,6 @@ $(document).ready(function(){
 
   $searchItems = $('#searchResults');
 
-  // $.ajax({
-  //   method: 'GET',
-  //   url: '/api/todo',
-  //   success: handleSuccess,
-  //   error: handleError
-  // });
-
    $('#searchForm').on('submit', function(e) {
     e.preventDefault();
     $.ajax({
@@ -26,7 +19,15 @@ $(document).ready(function(){
       data: $(this).serialize(),
       success: handleSuccess,
       error: handleError
-    });
+    }).then(
+      // $.ajax({
+      //   method: 'GET',
+      //   url: '/search/api',
+      //   success: handleSuccess,
+      //   error: handleError
+      // })
+    );
+
     //$('#searchInput').val('');
   });
 
@@ -50,10 +51,6 @@ $(document).ready(function(){
 
 //////////////////////////////// FUNCTIONS ///////////////////////////////////
 
-
-function constructUrl(query){
-  return `https://trackapi.nutritionix.com/v2/search/instant?query=${query}`
-}
 
 function getTodoHtml(task) {
   return `<hr>
@@ -84,7 +81,7 @@ function render() {
 
 function handleSuccess(json) {
   console.log("success posting");
-  //console.log(json);
+  console.log(json);
   // allTodo = json;
   // render();
 }
