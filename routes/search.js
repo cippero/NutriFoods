@@ -18,27 +18,37 @@ router.post('/', function(req, res) {
 
 		if (error) { return console.log('error:', error); }
  		if (response.statusCode !== 200) { console.log('statusCode:', response && response.statusCode); }
-
+ 		
  		let result = JSON.parse(body);
+ 		let currentImg;
 
- 		//console.log(result.branded[0].photo.thumb);
- 		//res.json(result);
+ 		if (result.common[0] === undefined || result.branded[0] === undefined) { return console.log("empty search"); }
 
  		for (let i=0; i<5; i++){
+ 			if (typeof result.common[i].photo.thumb !== "string") {
+ 				currentImg = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
+ 			} else {
+ 				currentImg = result.common[i].photo.thumb;
+ 			}
  			searchList.push({
  				name:   result.common[i].food_name
-				,image: result.common[i].photo.thumb
+				,image: currentImg
  			});
  		}
  		for (let i=0; i<5; i++){
+ 			if (typeof result.branded[i].photo.thumb !== "string") {
+ 				currentImg = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
+ 			} else {
+ 				currentImg = result.branded[i].photo.thumb;
+ 			}
  			searchList.push({
  				name:          result.branded[i].food_name
  				,nix_brand_id: result.branded[i].nix_brand_id
-				,image:        result.branded[i].photo.thumb
+				,image:        currentImg
  			});
  		}
+ 		res.json(searchList);
  	});
- 	res.redirect('/search/api'); //not working?
 });
 
 router.get('/api', function(req, res) {

@@ -11,25 +11,35 @@ $(document).ready(function(){
 
   $searchItems = $('#searchResults');
 
-   $('#searchForm').on('submit', function(e) {
+  $('#searchForm').on('submit', function(e) {
     e.preventDefault();
-    $.ajax({
-      method: 'POST',
-      url: '/search',
-      data: $(this).serialize(),
-      success: handleSuccess,
-      error: handleError
-    }).then(
-      // $.ajax({
-      //   method: 'GET',
-      //   url: '/search/api',
-      //   success: handleSuccess,
-      //   error: handleError
-      // })
-    );
+    // $.ajax({
+    //   method:   'POST'
+    //   ,url:     '/search'
+    //   ,data:    $(this).serialize()
+    //   ,success: handleSuccess
+    //   ,error:   handleError
 
+    // });
+    ejaxPost();
     //$('#searchInput').val('');
   });
+
+
+
+  // $.ajax({
+  //   method:   'GET'
+  //   ,url:     '/search/api'
+  //   ,success: handleSuccess
+  //   ,error:   console.log("GET fail")
+  // });
+
+  // $.ajax({
+  //   method:   'GET'
+  //   ,url:     '/search/api'
+  //   ,success: handleSuccess
+  //   ,error:   console.log("GET fail")
+  // });
 
   // $todoList.on('click', '.deleteBtn', function() {
   //   console.log('clicked delete button to', '/api/todo/'+$(this).attr('data-id'));
@@ -52,74 +62,87 @@ $(document).ready(function(){
 //////////////////////////////// FUNCTIONS ///////////////////////////////////
 
 
-function getTodoHtml(task) {
+function searchChange(input){
+  console.log("input change:", input);
+  ejaxPost();
+}
+
+function ejaxPost() {
+  $.ajax({
+    method:   'POST'
+    ,url:     '/search'
+    ,data:    $(this).serialize()
+    ,success: handleSuccess
+    ,error:   handleError
+  });
+}
+
+function getSearchHtml(search) {
   return `<hr>
           <p>
-            <b>${task.task}</b>
-            ${task.description}
-            <button type="button" name="button" class="deleteBtn btn btn-danger pull-right" data-id=${task._id}>Delete</button>
+            <img src=${search.image} width="50"></img>
+            <b>${search.name}</b
           </p>`;
 }
 
-function getAllTodosHtml(todos) {
-  return todos.map(getTodoHtml).join("");
+function getAllSearchHtml(searches) {
+  return searches.map(getSearchHtml).join("");
 }
 
-// helper function to render all posts to view
-// note: we empty and re-render the collection each time our post data changes
+// helper function to render all searches to view
+// note: we empty and re-render the collection each time our search data changes
 function render() {
-  // empty existing posts from view
-  $todoList.empty();
+  // empty existing searches from view
+  $searchItems.empty();
 
-  // pass `allTodos` into the template function
-  var TodosHtml = getAllTodosHtml(allTodo);
+  // pass `allSearches` into the template function
+  let searchHtml = getAllSearchHtml(allSearches);
 
   // append html to the view
-  $todoList.append(TodosHtml);
+  $searchItems.append(searchHtml);
 
 };
 
 function handleSuccess(json) {
-  console.log("success posting");
-  console.log(json);
-  // allTodo = json;
-  // render();
-}
-
-function handleError(e) {
-  console.log('uh oh');
-  //$('#todoTarget').text('Failed to load todos, is the server working?');
-}
-
-function newTodoSuccess(json) {
-  console.log(json);
-  $('#searchForm input').val('');
-  //allTodo.push(json);
-  //render();
-}
-
-function newTodoError() {
-  console.log('new todo error!');
-}
-
-function deleteTodoSuccess(json) {
-  var todo = json;
-  console.log(json);
-  var todoId = todo._id;
-  console.log('delete todo', todoId);
-  // find the todo with the correct ID and remove it from our allTodo array
-  for(var index = 0; index < allTodo.length; index++) {
-    if(allTodo[index]._id === todoId) {
-      allTodo.splice(index, 1);
-      break;  // we found our todo - no reason to keep searching (this is why we didn't use forEach)
-    }
-  }
+  //console.log("POST success, json:", json);
+  allSearches = json;
   render();
 }
 
-function deleteTodoError() {
-  console.log('deletebook error!');
+function handleError(e) {
+  console.log('POST fail', e);
+//   //$('#todoTarget').text('Failed to load todos, is the server working?');
 }
+
+// function newTodoSuccess(json) {
+//   console.log(json);
+//   $('#searchForm input').val('');
+//   //allTodo.push(json);
+//   //render();
+// }
+
+// function newTodoError() {
+//   console.log('new todo error!');
+// }
+
+// function deleteTodoSuccess(json) {
+//   var todo = json;
+//   console.log(json);
+//   var todoId = todo._id;
+//   console.log('delete todo', todoId);
+//   // find the todo with the correct ID and remove it from our allTodo array
+//   for(var index = 0; index < allTodo.length; index++) {
+//     if(allTodo[index]._id === todoId) {
+//       allTodo.splice(index, 1);
+//       break;  // we found our todo - no reason to keep searching (this is why we didn't use forEach)
+//     }
+//   }
+//   render();
+// }
+
+// function deleteTodoError() {
+//   console.log('deletebook error!');
+// }
 
 
 

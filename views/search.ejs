@@ -3,14 +3,14 @@
 	<div class="form-group row">
 		<div class="col-10" id="searchDiv">
 			<!-- <label for="search">Search:</label> -->
-			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search">
+			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);">
 			<!-- <input class="typeahead form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search"> -->
 		</div>
 		<div class="col-2">
 			<input type="submit" value="Submit" class="btn-success btn">
 		</div>
 	</div>
-	<div class="form-group row">
+	<!-- <div class="form-group row">
 		<div class="col-12">
 			<input class="form-control" id ="searchQuantity" name="quantity" placeholder="Enter quantity of items" type="number" min="1" value="1" required>
 		</div>
@@ -31,5 +31,7 @@
 		     name="measurement" value="serving">
 		    <label for="serving">Servings</label>
 		</div>
-	</div>
+	</div> -->
+	<div id='searchResults'>
+    </div>
 </form>
