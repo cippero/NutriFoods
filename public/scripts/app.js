@@ -1,20 +1,19 @@
 console.log("Sanity Check: JS is working!");
 let $searchItems;
-let $nutrientResults;
 let allSearches = [];
-let searchAuto = false;
+let $nutrientResults;
+let nutrientsInItem = {};
+let searchAuto = true;
 
 
-////////////////////// AJAX /////////////////////////
-
-
-$(document).ready(function(){
+$(document).ready(function() {
 
   $searchItems = $('#searchResults');
   $nutrientResults = $('#nutrientResults');
 
   $('#searchForm').on('submit', function(e) {
     e.preventDefault();
+    $nutrientResults.empty();
     searchAuto = false;
     $.ajax({
       method:   'POST'
@@ -23,24 +22,22 @@ $(document).ready(function(){
       ,success: onSuccess
       ,error:   onError
     });
-    //$('#searchInput').val('');
+    $('#searchInput').val('');
+    allSearches = [];
+    $searchItems.empty();
   });
 
-
-
-  // $.ajax({
-  //   method:   'GET'
-  //   ,url:     '/search/api'
-  //   ,success: handleSuccess
-  //   ,error:   console.log("GET fail")
-  // });
-
-  // $.ajax({
-  //   method:   'GET'
-  //   ,url:     '/search/api'
-  //   ,success: handleSuccess
-  //   ,error:   console.log("GET fail")
-  // });
+  $(document).on("click", "#saveItem", function(e) {
+    $nutrientResults.empty();
+    searchAuto = true;
+    $.ajax({
+      method:   'POST'
+      ,url:     '/search/item'
+      ,data:    nutrientsInItem
+      ,success: nutrientPostSuccess
+      ,error:   nutrientPostError
+    });
+  });
 
   // $todoList.on('click', '.deleteBtn', function() {
   //   console.log('clicked delete button to', '/api/todo/'+$(this).attr('data-id'));
@@ -52,14 +49,14 @@ $(document).ready(function(){
   //   });
   // });
 
-  // $('#searchInput').change(function(e) {
-  //   console.log($('#searchInput').val());
-  // })
-
 });
 
+///////////////////////////////////////////////////////////
+////////////////////// AUTOCOMPLETE ///////////////////////
+///////////////////////////////////////////////////////////
+
 function ejaxPost(text) {
-  if (text !== '' && searchAuto){
+  if (text !== '' && searchAuto) {
     $.ajax({
       method:   'POST'
       ,url:     '/search'
@@ -73,9 +70,33 @@ function ejaxPost(text) {
   }
 }
 
-function searchChange(input){
-  //searchAuto = true;
+function searchChange(input) {
+  searchAuto = true;
   ejaxPost(input);
+}
+
+function handleError(e) {
+  console.log('POST fail', e);
+//   //$('#todoTarget').text('Failed to load todos, is the server working?');
+}
+
+function handleSuccess(json) {
+  allSearches = json;
+  render();
+}
+
+function render() {
+  $searchItems.empty();
+  let searchHtml = getAllSearchHtml(allSearches);
+  $searchItems.append(searchHtml);
+};
+
+function getAllSearchHtml(searches) {
+  let htmlToAppend = [];
+  for (let i = 0; i<6; i++){
+    htmlToAppend.push(getSearchHtml(searches[i]));
+  }
+  return htmlToAppend.join('');
 }
 
 function getSearchHtml(search) {
@@ -86,46 +107,54 @@ function getSearchHtml(search) {
           </p>`;
 }
 
-function getAllSearchHtml(searches) {
-  let htmlToAppend = [];
-  for (let i = 0; i<6; i++){
-    htmlToAppend.push(getSearchHtml(searches[i]));
-  }
-  return htmlToAppend.join('');
-  //return searches.map(getSearchHtml).join("");
-}
-
-// helper function to render all searches to view
-// note: we empty and re-render the collection each time our search data changes
-function render() {
-  // empty existing searches from view
-  $searchItems.empty();
-
-  // pass `allSearches` into the template function
-  let searchHtml = getAllSearchHtml(allSearches);
-
-  // append html to the view
-  $searchItems.append(searchHtml);
-
-};
-
-function handleSuccess(json) {
-  //console.log("POST success, json:", json);
-  allSearches = json;
-  render();
-}
-
-function handleError(e) {
-  console.log('POST fail', e);
-//   //$('#todoTarget').text('Failed to load todos, is the server working?');
-}
-
-function onSuccess(json) {
-  console.log("POST success, json:", json);
-}
+///////////////////////////////////////////////////////////
+///////////////////// NUTRIENT INFO ///////////////////////
+///////////////////////////////////////////////////////////
 
 function onError(e) {
   console.log('POST fail', e);
+}
+
+function onSuccess(json) {
+  //console.log("POST success, json:", json);
+  nutrientsInItem = json;
+  renderNutrients();
+}
+
+function renderNutrients() {
+  $nutrientResults.empty();
+  let nutrientHtml = getNutrientHtml(nutrientsInItem);
+  $nutrientResults.append(nutrientHtml);
+};
+
+function getNutrientHtml(item) {
+  // let servingUnit = '';
+  // if (item.serving_unit !== 'small' || item.serving_unit !== 'medium' || item.serving_unit !== 'large') 
+  //   { servingUnit = item.serving_unit }
+
+  // let img = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
+  // if (item.photo.highres) { img = item.photo.highres }
+  // else if (item.photo.thumb) { img = item.photo.thumb }
+
+  return `<h3>${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>
+          <img src=${item.photo} width="250"></img>
+          <ul>
+            <li>Calories: ${item.calories}</li>
+            <li>Protein: ${item.protein}</li>
+            <li>Total Carbs: ${item.total_carbs}</li>
+            <li>Sodium: ${item.sodium}</li>
+            <li>Total Fat: ${item.total_fat}</li>
+          </ul>
+          <button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>`;
+}
+// data-id=${item.ndb_no}
+
+function nutrientPostError(e) {
+  console.log('nutrient POST fail', e);
+}
+
+function nutrientPostSuccess(json) {
+  console.log("nutrient POST success, json:", json);
 }
 
 // function newTodoSuccess(json) {

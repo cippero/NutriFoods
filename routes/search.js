@@ -1,7 +1,7 @@
 var express    = require('express');
 var request    = require('request');
 var router     = express.Router();
-// var User    = require('../models/user');
+var User       = require('../models/user');
 let searchList = [];
 
 //////////////////// ROUTES ///////////////////////
@@ -56,69 +56,56 @@ router.post('/nutrients', function(req, res) {
 			if (err) { return console.error('upload failed:', err); }
 		  	//console.log('Upload successful!  Server responded with:', body);
 		  	body = JSON.parse(body);
-		  	console.log(body.foods);
-		  	res.json(body.foods[0]);
+
+			let img = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
+			if (body.foods[0].photo.highres) { img = body.foods[0].photo.highres }
+			else if (body.foods[0].photo.thumb) { img = body.foods[0].photo.thumb }
+
+			let foodItem = {
+				food_name:             body.foods[0].food_name //string
+			  	,brand_name:           body.foods[0].brand_name //string
+			  	,serving_qty:          body.foods[0].serving_qty //number
+			  	,serving_unit:         body.foods[0].serving_unit //string
+			  	,serving_weight_grams: body.foods[0].serving_weight_grams //number
+				,consumed_at:          body.foods[0].consumed_at //date
+				,is_raw_food:          body.foods[0].metadata.is_raw_food //boolean
+				,meal_type:            body.foods[0].meal_type //number
+				,food_group:           body.foods[0].tags.food_group //number
+				,ndb_no:               body.foods[0].ndb_no //number
+				,calories:             body.foods[0].nf_calories //number
+				,protein:              body.foods[0].nf_protein //number
+				,total_fat:            body.foods[0].nf_total_fat //number
+				,saturated_fat:        body.foods[0].nf_saturated_fat //number
+				,total_carbs:          body.foods[0].nf_total_carbohydrate //number
+				,fiber:                body.foods[0].nf_dietary_fiber //number
+				,sugars:               body.foods[0].nf_sugars //number
+				,cholesterol:          body.foods[0].nf_cholesterol //number
+				,potassium:            body.foods[0].nf_potassium //number
+				,sodium:               body.foods[0].nf_sodium //number
+				,photo:                img //string
+			}
+
+		  	res.json(foodItem);
 		}
 	);
 });
+
+router.post('/item', function(req, res) {
+	// User.findOneAndUpdate({name: res.locals.currentUser.name}, req.body, function(err, val) {
+	// 	if (err) { return console.log("err:", err); }
+	// })
+	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
+		if (err) { return console.log("err:", err); }
+		user.food.push(req.body);
+		user.save();
+		res.render('profile', {userInfo: user});
+	})
+	res.json(req.body);
+})
 
 router.get('/api', function(req, res) {
 	res.json(searchList);
 });
 
-// router.post('/', function(req, res) {
-// 	let query = req.body.search;
-// 	query = query.replace(/\s/g, '%20');
-// 	let searchUrl = `https://api.edamam.com/api/food-database/parser?ingr=${query}&app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}&page=0`;
-// 	let quantity = parseInt(req.body.quantity);
-// 	let measurement = req.body.measurement;
-
-// 	request(searchUrl, function (error, response, body) {
-// 		if (error) { return console.log('error:', error); }
-// 		if (response.statusCode !== 200) { console.log('statusCode:', response && response.statusCode); }
-
-// 		let result = JSON.parse(body);
-
-// 		if (!result.parsed[0]) { return console.log("search failed"); }
-// 		let title = result.parsed[0].food.label;
-// 		//title = title.replace(/,.*/, '');
-// 		let uri = result.parsed[0].food.uri;
-// 		let mURI = `http://www.edamam.com/ontologies/edamam.owl#Measure_${measurement}`
-
-// 		let queryIngrediant = {
-// 			"yield": 1,
-// 			"ingredients": [
-// 				{
-// 					"quantity": quantity,
-// 					"measureURI": mURI,
-// 					"foodURI": uri
-// 				}
-// 			]
-// 		}
-
-// 		request.post({url:`https://api.edamam.com/api/food-database/nutrients?app_id=${process.env.EDAMAM_ID}&app_key=${process.env.EDAMAM_KEY}`, body: JSON.stringify(queryIngrediant), headers: {'content-type': 'application/json'}}, 
-// 			function optionalCallback(err, httpResponse, bodyInfo) {
-// 				if (err) {
-// 			    	return console.error('upload failed:', err);
-// 			  	}
-// 			  	//console.log('Upload successful!  Server responded with:', bodyInfo);
-// 			  	bodyInfo = JSON.parse(bodyInfo);
-// 			  	//saveSearch(bodyInfo);
-// 			  	console.log(bodyInfo.ingredients[0].parsed[0].food, bodyInfo.totalNutrients.SUGAR.quantity + bodyInfo.totalNutrients.SUGAR.unit, bodyInfo.totalNutrients.SUGAR.label);
-
-// 			  	res.send("testing");
-
-// 		});
-// 	});
-// })
-
-// function saveSearch(info){
-// 	return info;
-// }
-
-// // post search results
-// router.get('/api', function (req, res) {
-//   res.json(saveSearch());
-// });
 
 module.exports = router;
