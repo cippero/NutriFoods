@@ -23,7 +23,8 @@ app.use(morgan('tiny'));
 app.use(session({
 	secret:            process.env.SESSION_SECRET,
 	resave:            false,
-	saveUninitialized: true
+	//saveUninitialized: true
+	saveUninitialized: false //testing
 }));
 app.use(flash());
 app.use(passport.initialize());

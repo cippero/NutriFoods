@@ -2,17 +2,46 @@
 <form id="searchForm">
 	<div class="form-group row">
 		<div class="col-10" id="searchDiv">
-			<!-- <label for="search">Search:</label> -->
 			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off">
-			<!-- <input class="typeahead form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search"> -->
 		</div>
 		<div class="col-2">
 			<input type="submit" value="Submit" class="btn-success btn">
 		</div>
 	</div>
-	<div id='searchResults'>
-    </div>
-    <hr>
-    <div id='nutrientResults'>
-    </div>
 </form>
+<div id='searchResults'>
+</div>
+<hr>
+<div id='nutrientResults'>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#foodInfo">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="foodInfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Enter quantity for <span id="foodNameHTML"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form id="searchFormModal">
+			<input class="form-control" type="text" id ="foodQuantity" class="form-control" name="search" placeholder="Enter quantity" autocomplete="off" minlength="1">
+      		<div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button id="submitModalForm" type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>
+     		</div>
+		</form>
+
+      </div>
+      	
+    </div>
+  </div>
+</div>

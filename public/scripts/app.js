@@ -11,10 +11,12 @@ $(document).ready(function() {
   $searchItems = $('#searchResults');
   $nutrientResults = $('#nutrientResults');
 
+//////////// return nutrient information ///////////
   $('#searchForm').on('submit', function(e) {
+    console.log($('searchInput').val());
     e.preventDefault();
     $nutrientResults.empty();
-    searchAuto = false;
+    searchAuto = true;
     $.ajax({
       method:   'POST'
       ,url:     '/search/nutrients'
@@ -23,10 +25,34 @@ $(document).ready(function() {
       ,error:   onError
     });
     $('#searchInput').val('');
-    allSearches = [];
-    $searchItems.empty();
   });
 
+
+  // $("#searchFormModal").on("submit", function(e) {
+  //   e.preventDefault();
+  //   console.log("submit modal");
+  // });
+
+  $("#submitModalForm").on("click", function(e) {
+    e.preventDefault();
+    if (!$('#foodQuantity').val('')) {
+      console.log("empty");
+      console.log($('#foodQuantity').val());
+      console.log($('#foodQuantity').text());
+    }
+    console.log("not empty");
+    console.log($('#foodQuantity').val());
+    console.log($('#foodQuantity').text());
+    //$("#submitModalForm").attr("data-dismiss", "modal");
+  });
+
+  // $(document).keypress(function(e) {
+  //   if(e.which === 13 && modalEnter) {
+  //       console.log('You pressed enter!');
+  //   }
+  // });
+
+//////////// store food in user's db ////////////
   $(document).on("click", "#saveItem", function(e) {
     $nutrientResults.empty();
     searchAuto = true;
@@ -37,6 +63,13 @@ $(document).ready(function() {
       ,success: nutrientPostSuccess
       ,error:   nutrientPostError
     });
+  });
+
+//////////// populate autocomplete list ///////////
+  $(document).on("click", ".quickSearch", function(e) {
+    searchAuto = false;
+    $searchItems.empty();
+    $("#foodNameHTML").text(this.dataset.name);
   });
 
   // $todoList.on('click', '.deleteBtn', function() {
@@ -55,6 +88,8 @@ $(document).ready(function() {
 ////////////////////// AUTOCOMPLETE ///////////////////////
 ///////////////////////////////////////////////////////////
 
+
+//////// autocomplete search api /////////
 function ejaxPost(text) {
   if (text !== '' && searchAuto) {
     $.ajax({
@@ -101,11 +136,12 @@ function getAllSearchHtml(searches) {
 
 function getSearchHtml(search) {
   return `<hr>
-          <p>
+          <p class="quickSearch" data-name='${search.name}' data-toggle="modal" data-target="#foodInfo">
             <img src=${search.image} width="50"></img>
             <b>${search.name}</b
           </p>`;
 }
+
 
 ///////////////////////////////////////////////////////////
 ///////////////////// NUTRIENT INFO ///////////////////////
@@ -116,7 +152,6 @@ function onError(e) {
 }
 
 function onSuccess(json) {
-  //console.log("POST success, json:", json);
   nutrientsInItem = json;
   renderNutrients();
 }
@@ -128,14 +163,6 @@ function renderNutrients() {
 };
 
 function getNutrientHtml(item) {
-  // let servingUnit = '';
-  // if (item.serving_unit !== 'small' || item.serving_unit !== 'medium' || item.serving_unit !== 'large') 
-  //   { servingUnit = item.serving_unit }
-
-  // let img = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
-  // if (item.photo.highres) { img = item.photo.highres }
-  // else if (item.photo.thumb) { img = item.photo.thumb }
-
   return `<h3>${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>
           <img src=${item.photo} width="250"></img>
           <ul>
@@ -147,7 +174,6 @@ function getNutrientHtml(item) {
           </ul>
           <button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>`;
 }
-// data-id=${item.ndb_no}
 
 function nutrientPostError(e) {
   console.log('nutrient POST fail', e);

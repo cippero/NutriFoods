@@ -84,7 +84,7 @@ router.post('/nutrients', function(req, res) {
 				,sodium:               body.foods[0].nf_sodium //number
 				,photo:                img //string
 			}
-
+			console.log(foodItem);
 		  	res.json(foodItem);
 		}
 	);
