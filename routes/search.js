@@ -25,7 +25,10 @@ router.post('/', function(req, res) {
  		let result = JSON.parse(body);
  		let currentImg;
 
- 		if (result.common == false || result.branded == false) { return console.log("empty search"); }
+ 		if (result.common == false || result.branded == false) { 
+ 			res.send("empty search");
+ 			return console.log("empty search"); 
+ 		}
 
  		for (let i=0; i<3; i++){
  			if (typeof result.common[i].photo.thumb !== "string") {
@@ -58,6 +61,7 @@ router.post('/', function(req, res) {
 
 router.post('/nutrients', function(req, res) {
 	let query = {query: req.body.search};
+	//let query = {query: req.body.search, timezone: };
 	request.post({url:`https://trackapi.nutritionix.com/v2/natural/nutrients`, body: JSON.stringify(query), headers: {'Content-Type': 'application/json', "x-app-id": process.env.NUTRITIONIX_ID, "x-app-key": process.env.NUTRITIONIX_KEY}}, function optionalCallback(err, httpResponse, body) {
 			if (err) { return console.error('upload failed:', err); }
 		  	//console.log('Upload successful!  Server responded with:', body);

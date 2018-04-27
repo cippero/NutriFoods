@@ -73,7 +73,7 @@ $(document).ready(function() {
   });
 
 ///////////////// update profile /////////////////
-  $("#updateProfile").on("click", function(e) {
+  $("#updateProfile").on("submit", function(e) {
     $.ajax({
       method:   'PUT'
       ,url:     '/profile/update'

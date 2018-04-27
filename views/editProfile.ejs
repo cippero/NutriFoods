@@ -51,11 +51,12 @@
 	<div class="form-group">
 		<p>Lifestyle</p>
 		<div class="form-group row">
+
 			<% if (currentUser.activityLevel == "1") {  %>
 				<div class="col-4">
 					<input type="radio" id="sedentary"
 				     name="activityLevel" value="1" checked>
-				    <label for="sedentary" checked>Sedentary</label>
+				    <label for="sedentary">Sedentary</label>
 				</div>
 				<div class="col-4">
 				    <input type="radio" id="average"
@@ -75,8 +76,8 @@
 				</div>
 				<div class="col-4">
 				    <input type="radio" id="average"
-				     name="activityLevel" value="2">
-				    <label for="average" checked>Average</label>
+				     name="activityLevel" value="2" checked>
+				    <label for="average">Average</label>
 				</div>
 				<div class="col-4">
 				    <input type="radio" id="active"
@@ -96,11 +97,14 @@
 				</div>
 				<div class="col-4">
 				    <input type="radio" id="active"
-				     name="activityLevel" value="3">
-				    <label for="active" checked>Active</label>
+				     name="activityLevel" value="3" checked>
+				    <label for="active">Active</label>
 				</div>
 			<% } %>
 		</div>
 	</div>
+	
+	<% include partials/timezones %>
+
 	<input type="submit" value="Update" class="btn-success btn" form='updateProfile'>
 </form>

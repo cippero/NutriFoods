@@ -58,6 +58,10 @@ var userSchema = new mongoose.Schema ({
 		type: Number,
 		required: true
 	},
+	timezone: {
+		type: Number,
+		required: true
+	},
 	food: [foodSchema]
 });
 
