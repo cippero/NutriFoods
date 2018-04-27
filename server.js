@@ -44,17 +44,16 @@ app.get('/', function(req,res) {
 })
 
 app.get('/profile', isLoggedIn, function(req, res) {
-	res.render("profile", {user: res.locals.currentUser});
+	res.render("profile");
 })
 
 app.get('/editProfile', isLoggedIn, function(req, res) {
-	res.render("editProfile", {user: res.locals.currentUser});
+	res.render("editProfile");
 })
 
 app.put('/profile/update', isLoggedIn, function(req, res) {
 	User.findOneAndUpdate({name: res.locals.currentUser.name}, req.body, function(err, user) {
 		if (err) { return console.log("err:", err); }
-		//res.json(user);
 		res.redirect("profile");
 	})
 })

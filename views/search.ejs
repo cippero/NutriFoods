@@ -2,7 +2,7 @@
 <form id="searchForm">
 	<div class="form-group row">
 		<div class="col-10" id="searchDiv">
-			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off">
+			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off" autofocus="true">
 		</div>
 		<div class="col-2">
 			<input type="submit" value="Submit" class="btn-success btn">
@@ -33,7 +33,7 @@
       <div class="modal-body">
 
         <form id="searchFormModal">
-			<input class="form-control" type="text" id ="foodQuantity" class="form-control" name="search" placeholder="Enter quantity" autocomplete="off" minlength="1">
+			<input class="form-control" type="text" id ="foodQuantity" class="form-control" name="search" placeholder="Enter quantity" autocomplete="off" onInput="quantityChange(this.value);">
       		<div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 		        <button id="submitModalForm" type="submit" class="btn btn-primary" data-dismiss="modal">Submit</button>

@@ -4,10 +4,13 @@ var router     = express.Router();
 var User       = require('../models/user');
 let searchList = [];
 
-//////////////////// ROUTES ///////////////////////
+//////////////////////////////////////////////////////////////////
+
 router.get('/', function(req, res) {
 	res.render("search")
 })
+
+//////////////////////////////////////////////////////////////////
 
 router.post('/', function(req, res) {
 	searchList = [];
@@ -22,7 +25,8 @@ router.post('/', function(req, res) {
  		let result = JSON.parse(body);
  		let currentImg;
 
- 		if (!result.common[0] || !result.branded[0]) { return console.log("empty search"); }
+ 		if (result.common == false || result.branded == false) { return console.log("empty search"); }
+
  		for (let i=0; i<3; i++){
  			if (typeof result.common[i].photo.thumb !== "string") {
  				currentImg = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
@@ -50,13 +54,18 @@ router.post('/', function(req, res) {
  	});
 });
 
+//////////////////////////////////////////////////////////////////
+
 router.post('/nutrients', function(req, res) {
 	let query = {query: req.body.search};
 	request.post({url:`https://trackapi.nutritionix.com/v2/natural/nutrients`, body: JSON.stringify(query), headers: {'Content-Type': 'application/json', "x-app-id": process.env.NUTRITIONIX_ID, "x-app-key": process.env.NUTRITIONIX_KEY}}, function optionalCallback(err, httpResponse, body) {
 			if (err) { return console.error('upload failed:', err); }
 		  	//console.log('Upload successful!  Server responded with:', body);
+		  	
 		  	body = JSON.parse(body);
 
+			if (!body.foods) { return console.log('empty search'); res.send("empty search"); }
+				
 			let img = "https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg";
 			if (body.foods[0].photo.highres) { img = body.foods[0].photo.highres }
 			else if (body.foods[0].photo.thumb) { img = body.foods[0].photo.thumb }
@@ -90,38 +99,28 @@ router.post('/nutrients', function(req, res) {
 	);
 });
 
+//////////////////////////////////////////////////////////////////
+
 router.post('/item', function(req, res) {
-	// User.findOneAndUpdate({name: res.locals.currentUser.name}, req.body, function(err, val) {
-	// 	if (err) { return console.log("err:", err); }
-	// })
 	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
 		if (err) { return console.log("err:", err); }
 		user.food.push(req.body);
 		user.save();
-		res.render('profile', {userInfo: user});
+		res.render('profile');
 	})
-	res.json(req.body);
 })
+
+//////////////////////////////////////////////////////////////////
 
 router.delete('/item/:id', function(req, res) {
 	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
 		if (err) { return console.log("err:", err); }
-	// 	console.log(user.food, req.params.id);
 		user.food.id(req.params.id).remove();
 		user.save();
-		res.json(user);
-		//res.render('profile');
+		res.send("deleted");
 	})
-	// })
-	
-	//User.update({_id: req.user._id}, { $pull: {posts: req.body.post_id } } 
-	// User.update({name: res.locals.currentUser.name}, {$pull: {food: req.params.id} })
-
 })
 
-// router.get('/api', function(req, res) {
-// 	res.json(searchList);
-// });
-
+//////////////////////////////////////////////////////////////////
 
 module.exports = router;

@@ -4,6 +4,8 @@ let allSearches = [];
 let $nutrientResults;
 let nutrientsInItem = {};
 let searchAuto = true;
+let foodToSearch = "";
+let modalInput = "";
 
 
 $(document).ready(function() {
@@ -14,43 +16,28 @@ $(document).ready(function() {
 //////////// return nutrient information ///////////
   $('#searchForm').on('submit', function(e) {
     e.preventDefault();
-    $searchItems.empty();
     $nutrientResults.empty();
     searchAuto = true;
     $.ajax({
-      method:   'POST'
-      ,url:     '/search/nutrients'
-      ,data:    $(this).serialize()
-      ,success: onSuccess
-      ,error:   onError
-    });
+    method:   'POST'
+    ,url:     '/search/nutrients'
+    ,data:    $(this).serialize()
+    ,success: onSuccess
+    ,error:   onError
+  });
+    $searchItems.empty();
     $('#searchInput').val('');
   });
 
-
-  // $("#searchFormModal").on("submit", function(e) {
-  //   e.preventDefault();
-  //   console.log("submit modal");
-  // });
-
+//// search nutrients with specified quantity ////
   $("#submitModalForm").on("click", function(e) {
     e.preventDefault();
-    if (!$('#foodQuantity').val('')) {
-      console.log("not empty");
-      console.log($('#foodQuantity').val());
-      console.log($('#foodQuantity').text());
+    if (modalInput) {
+      $('#searchInput').val(modalInput + ' ' + foodToSearch);
+      $('#searchForm').submit();
+    $('#foodQuantity').val('');
     }
-    console.log("empty");
-    console.log($('#foodQuantity').val());
-    console.log($('#foodQuantity').text());
-    //$("#submitModalForm").attr("data-dismiss", "modal");
   });
-
-  // $(document).keypress(function(e) {
-  //   if(e.which === 13 && modalEnter) {
-  //       console.log('You pressed enter!');
-  //   }
-  // });
 
 //////////// store food in user's db ////////////
   $(document).on("click", "#saveItem", function(e) {
@@ -70,6 +57,7 @@ $(document).ready(function() {
     searchAuto = false;
     $searchItems.empty();
     $("#foodNameHTML").text(this.dataset.name);
+    foodToSearch = this.dataset.name;
   });
 
 ///////////////// delete food item /////////////////
@@ -94,15 +82,20 @@ $(document).ready(function() {
       ,error:   updateError
     })
   });
+});
 
+$('#foodInfo').on('shown.bs.modal', function() {
+  $('#foodQuantity').focus();
+});
+
+$('#foodInfo').on('hidden.bs.modal', function() {
+  $('#searchInput').focus();
 });
 
 ///////////////////////////////////////////////////////////
 ////////////////////// AUTOCOMPLETE ///////////////////////
 ///////////////////////////////////////////////////////////
 
-
-//////// autocomplete search api /////////
 function ejaxPost(text) {
   if (text !== '' && searchAuto) {
     $.ajax({
@@ -120,7 +113,12 @@ function ejaxPost(text) {
 
 function searchChange(input) {
   searchAuto = true;
-  ejaxPost(input);
+  if (input.length > 2) { ejaxPost(input); }
+  if (input.length == 0) { $searchItems.empty(); }
+}
+
+function quantityChange(input) {
+  return modalInput = input;
 }
 
 function handleError(e) {
