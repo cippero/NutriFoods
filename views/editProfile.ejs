@@ -1,5 +1,5 @@
 <h1>Edit Profile</h1>
-<form method="PUT" action="/profile/update">
+<form id="updateProfile">
 	<div class="form-group">
 		<label for="name">Name</label>
 		<%= currentUser.name %>
@@ -51,12 +51,11 @@
 	<div class="form-group">
 		<p>Lifestyle</p>
 		<div class="form-group row">
-
 			<% if (currentUser.activityLevel == "1") {  %>
 				<div class="col-4">
 					<input type="radio" id="sedentary"
 				     name="activityLevel" value="1" checked>
-				    <label for="sedentary">Sedentary</label>
+				    <label for="sedentary" checked>Sedentary</label>
 				</div>
 				<div class="col-4">
 				    <input type="radio" id="average"
@@ -84,7 +83,7 @@
 				     name="activityLevel" value="3">
 				    <label for="active">Active</label>
 				</div>
-			<% } else if (currentUser.activityLevel == "3") {  %>
+			<% } else {  %>
 				<div class="col-4">
 					<input type="radio" id="sedentary"
 				     name="activityLevel" value="1">
@@ -103,5 +102,5 @@
 			<% } %>
 		</div>
 	</div>
-	<input type="submit" value="Update" class="btn-success btn">
+	<input type="submit" value="Update" class="btn-success btn" form='updateProfile'>
 </form>

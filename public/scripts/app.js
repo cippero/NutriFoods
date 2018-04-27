@@ -14,6 +14,7 @@ $(document).ready(function() {
 //////////// return nutrient information ///////////
   $('#searchForm').on('submit', function(e) {
     e.preventDefault();
+    $searchItems.empty();
     $nutrientResults.empty();
     searchAuto = true;
     $.ajax({
@@ -73,8 +74,6 @@ $(document).ready(function() {
 
 ///////////////// delete food item /////////////////
   $(document).on("click", ".deleteFood", function(e) {
-    //console.log(this.dataset.id);
-    //'/search/item/'+$(this).attr('data-id'),
     $.ajax({
       method:   'DELETE'
       ,url:     `/search/item/${this.dataset.id}`
@@ -82,6 +81,17 @@ $(document).ready(function() {
       ,error:   deleteError
     }).then(() => {
       $(this).parent().remove();
+    })
+  });
+
+///////////////// update profile /////////////////
+  $("#updateProfile").on("click", function(e) {
+    $.ajax({
+      method:   'PUT'
+      ,url:     '/profile/update'
+      ,data:    $(this).serialize()
+      ,success: updateSuccess
+      ,error:   updateError
     })
   });
 
@@ -198,32 +208,14 @@ function deleteSuccess() {
   console.log("success deleting");
 }
 
-// function newTodoSuccess(json) {
-//   console.log(json);
-//   $('#searchForm input').val('');
-//   //allTodo.push(json);
-//   //render();
-// }
+///////////////////////////////////////////////////////////
+///////////////////// UPDATE ITEM /////////////////////////
+///////////////////////////////////////////////////////////
 
-// function newTodoError() {
-//   console.log('new todo error!');
-// }
+function updateError() {
+  console.log("update error");
+}
 
-// function deleteTodoSuccess(json) {
-//   var todo = json;
-//   console.log(json);
-//   var todoId = todo._id;
-//   console.log('delete todo', todoId);
-//   // find the todo with the correct ID and remove it from our allTodo array
-//   for(var index = 0; index < allTodo.length; index++) {
-//     if(allTodo[index]._id === todoId) {
-//       allTodo.splice(index, 1);
-//       break;  // we found our todo - no reason to keep searching (this is why we didn't use forEach)
-//     }
-//   }
-//   render();
-// }
-
-// function deleteTodoError() {
-//   console.log('deletebook error!');
-// }
+function updateSuccess() {
+  console.log("update success");
+}
