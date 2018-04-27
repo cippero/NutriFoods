@@ -103,9 +103,25 @@ router.post('/item', function(req, res) {
 	res.json(req.body);
 })
 
-router.get('/api', function(req, res) {
-	res.json(searchList);
-});
+router.delete('/item/:id', function(req, res) {
+	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
+		if (err) { return console.log("err:", err); }
+	// 	console.log(user.food, req.params.id);
+		user.food.id(req.params.id).remove();
+		user.save();
+		res.json(user);
+		//res.render('profile');
+	})
+	// })
+	
+	//User.update({_id: req.user._id}, { $pull: {posts: req.body.post_id } } 
+	// User.update({name: res.locals.currentUser.name}, {$pull: {food: req.params.id} })
+
+})
+
+// router.get('/api', function(req, res) {
+// 	res.json(searchList);
+// });
 
 
 module.exports = router;

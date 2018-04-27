@@ -9,7 +9,7 @@ var mongoose       = require('mongoose');
 var morgan         = require('morgan');
 var passport       = require('./config/passportConfig');
 var session        = require('express-session');
-// var request        = require('request');
+var User           = require('./models/user');
 var app            = express();
 
 ///////////////CONNECT TO DATABASE////////////////
@@ -44,7 +44,19 @@ app.get('/', function(req,res) {
 })
 
 app.get('/profile', isLoggedIn, function(req, res) {
-	res.render("profile");
+	res.render("profile", {user: res.locals.currentUser});
+})
+
+app.get('/editProfile', isLoggedIn, function(req, res) {
+	res.render("editProfile", {user: res.locals.currentUser});
+})
+
+app.put('/profile/update', isLoggedIn, function(req, res) {
+	User.findOneAndUpdate({name: res.locals.currentUser.name}, req.body, function(err, user) {
+		if (err) { return console.log("err:", err); }
+		//res.json(user);
+		res.redirect("profile");
+	})
 })
 
 app.use('/auth', require('./routes/auth'));

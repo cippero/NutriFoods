@@ -1,0 +1,107 @@
+<h1>Edit Profile</h1>
+<form method="PUT" action="/profile/update">
+	<div class="form-group">
+		<label for="name">Name</label>
+		<%= currentUser.name %>
+	</div>
+	<div class="form-group">
+		<label for="email">Email</label>
+		<%= currentUser.email %>
+	</div>
+	<div class="form-group">
+		<label for="height">Height</label>
+		<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
+	</div>
+	<div class="form-group">
+		<label for="weight">Weight</label>
+		<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
+	</div>
+	<div class="form-group">
+		<label for="age">Age</label>
+		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
+	</div>
+	<div class="form-group">
+		<p>Sex</p>
+		<div class="form-group row">
+			<% if (currentUser.sex == "male") {  %>
+				<div class="col-6">
+					<input type="radio" id="male"
+				     name="sex" value="male" checked>
+				    <label for="male">Male</label>
+				</div>
+				<div class="col-6">
+				    <input type="radio" id="female"
+				     name="sex" value="female">
+				    <label for="female">Female</label>
+				</div>
+			<% } else { %>
+				<div class="col-6">
+					<input type="radio" id="male"
+				     name="sex" value="male">
+				    <label for="male">Male</label>
+				</div>
+				<div class="col-6">
+				    <input type="radio" id="female"
+				     name="sex" value="female">
+				    <label for="female" checked>Female</label>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<div class="form-group">
+		<p>Lifestyle</p>
+		<div class="form-group row">
+
+			<% if (currentUser.activityLevel == "1") {  %>
+				<div class="col-4">
+					<input type="radio" id="sedentary"
+				     name="activityLevel" value="1" checked>
+				    <label for="sedentary">Sedentary</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="average"
+				     name="activityLevel" value="2">
+				    <label for="average">Average</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="active"
+				     name="activityLevel" value="3">
+				    <label for="active">Active</label>
+				</div>
+			<% } else if (currentUser.activityLevel == "2") {  %>
+				<div class="col-4">
+					<input type="radio" id="sedentary"
+				     name="activityLevel" value="1">
+				    <label for="sedentary">Sedentary</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="average"
+				     name="activityLevel" value="2">
+				    <label for="average" checked>Average</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="active"
+				     name="activityLevel" value="3">
+				    <label for="active">Active</label>
+				</div>
+			<% } else if (currentUser.activityLevel == "3") {  %>
+				<div class="col-4">
+					<input type="radio" id="sedentary"
+				     name="activityLevel" value="1">
+				    <label for="sedentary">Sedentary</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="average"
+				     name="activityLevel" value="2">
+				    <label for="average">Average</label>
+				</div>
+				<div class="col-4">
+				    <input type="radio" id="active"
+				     name="activityLevel" value="3">
+				    <label for="active" checked>Active</label>
+				</div>
+			<% } %>
+		</div>
+	</div>
+	<input type="submit" value="Update" class="btn-success btn">
+</form>

@@ -1,2 +1,22 @@
 <h1>PROFILE</h1>
 <h2>Welcome back, <%= currentUser.name %>!</h2>
+
+<% user.food.forEach(foodItem => { %>
+	<ul>
+		<li>Name: <%= foodItem.food_name %></li>
+		<li>Amount: <%= foodItem.serving_qty %> <%= foodItem.serving_unit %></li>
+		<li>Weight: <%= foodItem.serving_weight_grams %>g</li>
+		<li>Added On: <%= foodItem.consumed_at %></li>
+		<li>Calories: <%= foodItem.calories %></li>
+		<li>Protein: <%= foodItem.protein %></li>
+		<li>Total Fat: <%= foodItem.total_fat %></li>
+		<li>Saturated Fat: <%= foodItem.saturated_fat %></li>
+		<li>Total Carbs: <%= foodItem.total_carbs %></li>
+		<li>Sugars: <%= foodItem.sugars %></li>
+		<li>Dietary Fiber: <%= foodItem.fiber %></li>
+		<li>Potassium: <%= foodItem.potassium %></li>
+		<li>Sodium: <%= foodItem.sodium %></li>
+	</ul>
+	<button data-id=<%= foodItem.id %> type="button" name="button" class="btn btn-primary deleteFood">Delete</button>
+	<hr>
+<% }) %>

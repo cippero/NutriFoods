@@ -13,7 +13,6 @@ $(document).ready(function() {
 
 //////////// return nutrient information ///////////
   $('#searchForm').on('submit', function(e) {
-    console.log($('searchInput').val());
     e.preventDefault();
     $nutrientResults.empty();
     searchAuto = true;
@@ -36,11 +35,11 @@ $(document).ready(function() {
   $("#submitModalForm").on("click", function(e) {
     e.preventDefault();
     if (!$('#foodQuantity').val('')) {
-      console.log("empty");
+      console.log("not empty");
       console.log($('#foodQuantity').val());
       console.log($('#foodQuantity').text());
     }
-    console.log("not empty");
+    console.log("empty");
     console.log($('#foodQuantity').val());
     console.log($('#foodQuantity').text());
     //$("#submitModalForm").attr("data-dismiss", "modal");
@@ -72,15 +71,19 @@ $(document).ready(function() {
     $("#foodNameHTML").text(this.dataset.name);
   });
 
-  // $todoList.on('click', '.deleteBtn', function() {
-  //   console.log('clicked delete button to', '/api/todo/'+$(this).attr('data-id'));
-  //   $.ajax({
-  //     method: 'DELETE',
-  //     url: '/api/todo/'+$(this).attr('data-id'),
-  //     success: deleteTodoSuccess,
-  //     error: deleteTodoError
-  //   });
-  // });
+///////////////// delete food item /////////////////
+  $(document).on("click", ".deleteFood", function(e) {
+    //console.log(this.dataset.id);
+    //'/search/item/'+$(this).attr('data-id'),
+    $.ajax({
+      method:   'DELETE'
+      ,url:     `/search/item/${this.dataset.id}`
+      ,success: deleteSuccess
+      ,error:   deleteError
+    }).then(() => {
+      $(this).parent().remove();
+    })
+  });
 
 });
 
@@ -181,6 +184,18 @@ function nutrientPostError(e) {
 
 function nutrientPostSuccess(json) {
   console.log("nutrient POST success, json:", json);
+}
+
+///////////////////////////////////////////////////////////
+///////////////////// DELETE ITEM /////////////////////////
+///////////////////////////////////////////////////////////
+
+function deleteError() {
+  console.log("error deleting");
+}
+
+function deleteSuccess() {
+  console.log("success deleting");
 }
 
 // function newTodoSuccess(json) {
