@@ -13,7 +13,7 @@ var User           = require('./models/user');
 var app            = express();
 
 ///////////////CONNECT TO DATABASE////////////////
-mongoose.connect('mongodb://localhost/nutrifood');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/nutrifood');
 
 ////////////////SET & USE MODULES/////////////////
 app.set('view engine', 'ejs');
