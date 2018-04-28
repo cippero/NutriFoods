@@ -8,7 +8,9 @@ var foodSchema = new mongoose.Schema ({
   	,serving_qty:          Number
   	,serving_unit:         String
   	,serving_weight_grams: Number
-	,consumed_at:          String
+	,date:                 String
+    ,time:                 String
+    ,dateAndTime:          Number
 	,is_raw_food:          Boolean
 	,meal_type:            Number
 	,food_group:           Number

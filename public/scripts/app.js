@@ -6,12 +6,15 @@ let nutrientsInItem = {};
 let searchAuto = true;
 let foodToSearch = "";
 let modalInput = "";
+// let $listResults;
+// let listItems = [];
 
 
 $(document).ready(function() {
 
   $searchItems = $('#searchResults');
   $nutrientResults = $('#nutrientResults');
+  // $listResults = $('#foodList');
 
 //////////// return nutrient information ///////////
   $('#searchForm').on('submit', function(e) {
@@ -74,6 +77,7 @@ $(document).ready(function() {
 
 ///////////////// update profile /////////////////
   $("#updateProfile").on("submit", function(e) {
+    e.preventDefault();
     $.ajax({
       method:   'PUT'
       ,url:     '/profile/update'
@@ -83,6 +87,14 @@ $(document).ready(function() {
     })
   });
 });
+
+/////////////// render food list /////////////////
+  // $.ajax({
+  //   method:   'GET'
+  //   ,url:     '/profile/api'
+  //   ,success: listSuccess
+  //   ,error:   listError
+  // })
 
 $('#foodInfo').on('shown.bs.modal', function() {
   $('#foodQuantity').focus();
@@ -133,6 +145,7 @@ function handleSuccess(json) {
 
 function render() {
   $searchItems.empty();
+  if (allSearches == "empty search") { return console.log(allSearches); }
   let searchHtml = getAllSearchHtml(allSearches);
   $searchItems.append(searchHtml);
 };
@@ -191,7 +204,7 @@ function nutrientPostError(e) {
 }
 
 function nutrientPostSuccess(json) {
-  console.log("nutrient POST success, json:", json);
+  console.log("nutrient POST success");
 }
 
 ///////////////////////////////////////////////////////////
@@ -217,3 +230,42 @@ function updateError() {
 function updateSuccess() {
   console.log("update success");
 }
+
+///////////////////////////////////////////////////////////
+///////////////// RENDER ORDERED LIST /////////////////////
+///////////////////////////////////////////////////////////
+
+// function listError() {
+//   console.log('error getting list');
+// }
+
+// function listSuccess(json) {
+//   listItems = json;
+//   renderFoods();
+// }
+
+// function renderFoods() {
+//   $listResults.empty();
+//   let foodsHtml = getFoodsHtml(listItems);
+//   $listResults.append(foodsHtml);
+// };
+
+// function getFoodsHtml(item) {
+//   return ``;
+// }
+
+// function nutrientPostError(e) {
+//   console.log('nutrient POST fail', e);
+// }
+
+// function nutrientPostSuccess(json) {
+//   console.log("nutrient POST success");
+// }
+
+
+
+
+
+
+
+

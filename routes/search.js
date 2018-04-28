@@ -74,13 +74,19 @@ router.post('/nutrients', function(req, res) {
 			if (body.foods[0].photo.highres) { img = body.foods[0].photo.highres }
 			else if (body.foods[0].photo.thumb) { img = body.foods[0].photo.thumb }
 
+			let date = body.foods[0].consumed_at.slice(0, 10);
+			let time = body.foods[0].consumed_at.slice(11, 16);
+			let dateAndTime = date.replace(/-/g, '') + time.replace(/:/, '');
+
 			let foodItem = {
 				food_name:             body.foods[0].food_name //string
 			  	,brand_name:           body.foods[0].brand_name //string
 			  	,serving_qty:          body.foods[0].serving_qty //number
 			  	,serving_unit:         body.foods[0].serving_unit //string
 			  	,serving_weight_grams: body.foods[0].serving_weight_grams //number
-				,consumed_at:          body.foods[0].consumed_at //date
+				,date:                 date //string
+				,time:                 time //string
+				,dateAndTime:          dateAndTime //number
 				,is_raw_food:          body.foods[0].metadata.is_raw_food //boolean
 				,meal_type:            body.foods[0].meal_type //number
 				,food_group:           body.foods[0].tags.food_group //number
@@ -98,7 +104,7 @@ router.post('/nutrients', function(req, res) {
 				,photo:                img //string
 			}
 			console.log(foodItem);
-		  	res.json(foodItem);
+		  	res.send(foodItem);
 		}
 	);
 });
@@ -106,18 +112,18 @@ router.post('/nutrients', function(req, res) {
 //////////////////////////////////////////////////////////////////
 
 router.post('/item', function(req, res) {
-	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
+	User.findOne({_id: res.locals.currentUser._id}, function(err, user) {
 		if (err) { return console.log("err:", err); }
 		user.food.push(req.body);
 		user.save();
-		res.render('profile');
+		res.send('saved item');
 	})
 })
 
 //////////////////////////////////////////////////////////////////
 
 router.delete('/item/:id', function(req, res) {
-	User.findOne({name: res.locals.currentUser.name}, function(err, user) {
+	User.findOne({_id: res.locals.currentUser._id}, function(err, user) {
 		if (err) { return console.log("err:", err); }
 		user.food.id(req.params.id).remove();
 		user.save();
