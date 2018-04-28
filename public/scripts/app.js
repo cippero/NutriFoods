@@ -11,7 +11,6 @@ let modalInput = "";
 
 
 $(document).ready(function() {
-
   $searchItems = $('#searchResults');
   $nutrientResults = $('#nutrientResults');
   // $listResults = $('#foodList');
@@ -187,16 +186,22 @@ function renderNutrients() {
 };
 
 function getNutrientHtml(item) {
-  return `<h3>${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>
-          <img src=${item.photo} width="250"></img>
-          <ul>
-            <li>Calories: ${item.calories}</li>
-            <li>Protein: ${item.protein}</li>
-            <li>Total Carbs: ${item.total_carbs}</li>
-            <li>Sodium: ${item.sodium}</li>
-            <li>Total Fat: ${item.total_fat}</li>
-          </ul>
-          <button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>`;
+  let nutrientToPost =
+    `<h3>${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>
+    <img src=${item.photo} width="250"></img>
+    <ul>
+      <li>Calories: ${item.calories}</li>
+      <li>Protein: ${item.protein}</li>
+      <li>Total Carbs: ${item.total_carbs}</li>
+      <li>Sodium: ${item.sodium}</li>
+      <li>Total Fat: ${item.total_fat}</li>
+    </ul>`;
+
+    if ($('#currentUser').hasClass('loggedIn')) {
+      nutrientToPost += `<button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>`;
+    }
+
+  return nutrientToPost;
 }
 
 function nutrientPostError(e) {

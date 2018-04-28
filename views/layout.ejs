@@ -10,12 +10,11 @@
 	<div class="container">
 	 	<% include partials/alerts %>
 	 	<% if(currentUser) { %>
-	 	<p><%= currentUser.name %></p>
+	 		<div id="currentUser" class="loggedIn"><%= currentUser.name %></div>
 	 	<% } %>
 		<div class="row">
 			<div class="col-12">
 				<a href="/" class="btn btn-info">Home</a>
-				<a href="/search" class="btn btn-info">Search</a>
 				<% if(!currentUser) { %>
 					<a href="/auth/login" class="btn btn-info">Login</a>
 					<a href="/auth/signup" class="btn btn-info">Sign Up</a>

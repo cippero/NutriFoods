@@ -39,7 +39,7 @@ app.use(function(req, res, next){
 
 /////////////////////ROUTES///////////////////////
 app.get('/', function(req,res) {
-	res.render('home');
+	res.render('search');
 })
 
 app.use('/auth', require('./routes/auth'));
