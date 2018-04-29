@@ -159,9 +159,9 @@ function getAllSearchHtml(searches) {
 
 function getSearchHtml(search) {
   return `<hr>
-          <p class="quickSearch" data-name='${search.name}' data-toggle="modal" data-target="#foodInfo">
-            <img src=${search.image} width="50"></img>
-            <b>${search.name}</b
+          <p class="quickSearch" data-name='${search.name}' data-toggle="modal" data-target="#foodInfo">` +
+            // <img src=${search.image} width="50"></img>
+            `<b>${search.name}</b
           </p>`;
 }
 

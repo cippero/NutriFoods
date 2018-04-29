@@ -1,16 +1,17 @@
-@font-face {
+/*@font-face {
     font-family: 'liquidromregular';
     src: url('liquidrom-webfont.woff2') format('woff2'),
          url('liquidrom-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
+}*/
+body {
+	font-family: 'Gugi', cursive;
+	background-color: #8e9aa5;
 }
 .quickSearch:hover {
 	cursor: pointer;
-}
-body {
-	font-family: 'liquidromregular';
-	background-color: #ffe9d8;
+	background-color: #8e9aa5;
 }
 .nutrientBox {
 	background-color: #578da8;
@@ -20,13 +21,49 @@ body {
 	float: right;
 	font-size: 20px;
 }
+.searchBlock {
+	padding-top: 30px;
+	margin-bottom: 0;
+}
 .btn {
 	font-size: 20px;
 }
 .mainTitle {
+	/*font-family: 'liquidromregular';*/
 	font-size: 85px;
 	text-align: center;
+	background-color: #1d3247;
+	color: white;
+}
+.titleChar {
+	color: red;
 }
 .navLinks {
 	font-size: 24px;
+}
+.navBar {
+	background-color: #516982;
+	padding: 0;
+}
+.navbar-nav {
+	margin: 0 auto;
+}
+.footerDiv {
+	background-color: #516982;
+	margin-top: 100px;
+}
+.quickSearch {
+	background-color: white;
+	margin: 0;
+	width: 70%;
+	float: right;
+}
+
+@media only screen and (min-width: 600px) {
+    .navLinks {
+		font-size: 40px;
+	}
+	.navBar {
+		padding: 10px;
+	}
 }
