@@ -1,11 +1,10 @@
-<h1>SEARCH</h1>
 <form id="searchForm">
 	<div class="form-group row">
-		<div class="col-10" id="searchDiv">
-			<input class="form-control" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off" autofocus="true">
+		<div class="col-8" id="searchDiv">
+			<input class="form-control searchBar" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off" autofocus="true">
 		</div>
-		<div class="col-2">
-			<input type="submit" value="Submit" class="btn-success btn">
+		<div class="col-4">
+			<input type="submit" value="Search" class="btn-success btn">
 		</div>
 	</div>
 </form>
@@ -13,6 +12,31 @@
 </div>
 <hr>
 <div id='nutrientResults'>
+<!-- testing -->
+
+
+<h3 class="mx-auto">5 large eggs</h3>
+<div class="container nutrientBox">
+  <div class="row">
+    <div class="col-sm">
+      <img class="border rounded-left border-info" src="https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg" width="250"></img>
+    </div>
+    <div class="col-sm">
+      <ul class="border rounded-right border-info">
+        <li>Calories: 357.5</li>
+        <li>Protein: 31.4</li>
+        <li>Total Carbs: 1.8</li>
+        <li>Sodium: 355</li>
+        <li>Total Fat: 23.78</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>
+
+
+
+<!-- testing -->
 </div>
 
 <!-- Modal -->

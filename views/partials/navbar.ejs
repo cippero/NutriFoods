@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">icon</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+    	<% if (currentPage === 'Search') { %>
+     		<a class="navLinks nav-item nav-link active" href="/">SEARCH <span class="sr-only">(current)</span></a>
+    	<% } else { %>
+    		<a class="navLinks nav-item nav-link" href="/">SEARCH <span class="sr-only">(current)</span></a>
+    	<% } %>
+    <% if(!currentUser) { %>
+		<% if (currentPage === 'Login') { %>
+			<a class="navLinks nav-item nav-link active" href="/auth/login" class="btn btn-info">LOGIN</a>
+		<% } else { %>
+			<a class="navLinks nav-item nav-link" href="/auth/login" class="btn btn-info">LOGIN</a>
+		<% } if (currentPage === 'Sign Up') { %>
+			<a class="navLinks nav-item nav-link active" href="/auth/signup" class="btn btn-info">SIGN UP</a>
+		<% } else { %>
+			<a class="navLinks nav-item nav-link" href="/auth/signup" class="btn btn-info">SIGN UP</a>
+		<% } %>
+	<% } else { %>
+		<% if (currentPage === 'Profile') { %>
+			<a class="navLinks nav-item nav-link active" href="/profile" class="btn btn-info">PROFILE</a>
+		<% } else { %>
+			<a class="navLinks nav-item nav-link" href="/profile" class="btn btn-info">PROFILE</a>
+		<% } if (currentPage === 'Edit Profile') { %>
+			<a class="navLinks nav-item nav-link active" href="/profile/edit" class="btn btn-info">EDIT PROFILE</a>
+		<% } else { %>
+			<a class="navLinks nav-item nav-link" href="/profile/edit" class="btn btn-info">EDIT PROFILE</a>
+	  	<% } %>
+    <% } %>
+    </div>
+  </div>
+</nav>

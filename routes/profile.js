@@ -5,7 +5,7 @@ var isLoggedIn = require('../middleware/isLoggedIn');
 var User       = require('../models/user');
 
 router.get('/', isLoggedIn, function(req, res) {
-	res.render("profile");
+	res.render("profile", {currentPage: 'Profile'});
 })
 
 // router.get('/api', isLoggedIn, function(req, res) {
@@ -13,7 +13,7 @@ router.get('/', isLoggedIn, function(req, res) {
 // })
 
 router.get('/edit', isLoggedIn, function(req, res) {
-	res.render("editProfile");
+	res.render("editProfile", {currentPage: 'Edit Profile'});
 })
 
 router.put('/update', isLoggedIn, function(req, res) {

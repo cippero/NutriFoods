@@ -7,25 +7,13 @@
    <link rel="stylesheet" type="text/css" href="../styles/style.css">
  </head>
  <body>
+ 	<div class="container mainTitle">NutriFoods</div>
 	<div class="container">
 	 	<% include partials/alerts %>
 	 	<% if(currentUser) { %>
 	 		<div id="currentUser" class="loggedIn"><%= currentUser.name %></div>
 	 	<% } %>
-		<div class="row">
-			<div class="col-12">
-				<a href="/" class="btn btn-info">Home</a>
-				<% if(!currentUser) { %>
-					<a href="/auth/login" class="btn btn-info">Login</a>
-					<a href="/auth/signup" class="btn btn-info">Sign Up</a>
-				<% } else { %>
-					<a href="/auth/logout" class="btn btn-info">Log out</a>
-					<a href="/profile" class="btn btn-info">Profile</a>
-					<a href="/profile/edit" class="btn btn-info">Edit Profile</a>
-				<% } %>
-			</div>
-		</div>
-		<hr>
+		<% include partials/navbar %>
 		<%- body %>
 	</div>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>

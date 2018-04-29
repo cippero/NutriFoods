@@ -1,4 +1,32 @@
+@font-face {
+    font-family: 'liquidromregular';
+    src: url('liquidrom-webfont.woff2') format('woff2'),
+         url('liquidrom-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 .quickSearch:hover {
 	cursor: pointer;
-/*	background-color: teal;*/
+}
+body {
+	font-family: 'liquidromregular';
+	background-color: #ffe9d8;
+}
+.nutrientBox {
+	background-color: #578da8;
+}
+.searchBar {
+	width: 70%;
+	float: right;
+	font-size: 20px;
+}
+.btn {
+	font-size: 20px;
+}
+.mainTitle {
+	font-size: 85px;
+	text-align: center;
+}
+.navLinks {
+	font-size: 24px;
 }

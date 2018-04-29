@@ -186,16 +186,40 @@ function renderNutrients() {
 };
 
 function getNutrientHtml(item) {
-  let nutrientToPost =
-    `<h3>${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>
-    <img src=${item.photo} width="250"></img>
-    <ul>
-      <li>Calories: ${item.calories}</li>
-      <li>Protein: ${item.protein}</li>
-      <li>Total Carbs: ${item.total_carbs}</li>
-      <li>Sodium: ${item.sodium}</li>
-      <li>Total Fat: ${item.total_fat}</li>
-    </ul>`;
+  let nutrientToPost;
+
+  if (item.serving_unit !== item.food_name) {
+    nutrientToPost = `<h3 class="mx-auto">${item.serving_qty} ${item.serving_unit} ${item.food_name}</h3>`;
+  } else {
+    nutrientToPost = `<h3 class="mx-auto">${item.serving_qty} ${item.food_name}</h3>`;
+  }
+  
+  nutrientToPost +=
+`<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <img class="float-right border rounded-left border-info" src=${item.photo} width="250"></img>
+    </div>
+    <div class="col-sm">
+      <ul class="border rounded-right border-info">
+        <li>Calories: ${item.calories}</li>
+        <li>Protein: ${item.protein}</li>
+        <li>Total Carbs: ${item.total_carbs}</li>
+        <li>Sodium: ${item.sodium}</li>
+        <li>Total Fat: ${item.total_fat}</li>
+      </ul>
+    </div>
+  </div>
+</div>`;
+
+    // `<img src=${item.photo} width="250"></img>
+    // <ul>
+    //   <li>Calories: ${item.calories}</li>
+    //   <li>Protein: ${item.protein}</li>
+    //   <li>Total Carbs: ${item.total_carbs}</li>
+    //   <li>Sodium: ${item.sodium}</li>
+    //   <li>Total Fat: ${item.total_fat}</li>
+    // </ul>`;
 
     if ($('#currentUser').hasClass('loggedIn')) {
       nutrientToPost += `<button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>`;

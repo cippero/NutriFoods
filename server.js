@@ -39,7 +39,7 @@ app.use(function(req, res, next){
 
 /////////////////////ROUTES///////////////////////
 app.get('/', function(req,res) {
-	res.render('search');
+	res.render('search', {currentPage: 'Search'});
 })
 
 app.use('/auth', require('./routes/auth'));

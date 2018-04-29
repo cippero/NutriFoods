@@ -5,7 +5,7 @@ var User     = require('../models/user');
 
 ////////////////////LOGIN///////////////////////
 router.get('/login', function(req, res) {
-	res.render('auth/login');
+	res.render('auth/login', {currentPage: 'Login'});
 })
 
 router.post('/login', passport.authenticate('local', {
@@ -17,7 +17,7 @@ router.post('/login', passport.authenticate('local', {
 
 ////////////////////SIGNUP//////////////////////
 router.get('/signup', function(req, res) {
-	res.render('auth/signup');
+	res.render('auth/signup', {currentPage: 'Sign Up'});
 })
 
 router.post('/signup', function(req, res, next) {
