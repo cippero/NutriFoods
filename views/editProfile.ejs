@@ -20,87 +20,34 @@
 		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
 	</div>
 	<div class="form-group">
-		<p>Sex</p>
-		<div class="form-group row">
+		<label for="gender">Gender</label>
+		<select name="sex" id="gender" class="form-control">
 			<% if (currentUser.sex == "male") {  %>
-				<div class="col-6">
-					<input type="radio" id="male"
-				     name="sex" value="male" checked>
-				    <label for="male">Male</label>
-				</div>
-				<div class="col-6">
-				    <input type="radio" id="female"
-				     name="sex" value="female">
-				    <label for="female">Female</label>
-				</div>
+				<option value="male" selected>Male</option>
+				<option value="female">Female</option>
 			<% } else { %>
-				<div class="col-6">
-					<input type="radio" id="male"
-				     name="sex" value="male">
-				    <label for="male">Male</label>
-				</div>
-				<div class="col-6">
-				    <input type="radio" id="female"
-				     name="sex" value="female">
-				    <label for="female" checked>Female</label>
-				</div>
+				<option value="male">Male</option>
+				<option value="female" selected>Female</option>
 			<% } %>
-		</div>
+		</select>
 	</div>
 	<div class="form-group">
-		<p>Lifestyle</p>
-		<div class="form-group row">
-
+		<label for="activity">Activity Level</label>
+		<select name="activityLevel" id="activity" class="form-control">
 			<% if (currentUser.activityLevel == "1") {  %>
-				<div class="col-4">
-					<input type="radio" id="sedentary"
-				     name="activityLevel" value="1" checked>
-				    <label for="sedentary">Sedentary</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="average"
-				     name="activityLevel" value="2">
-				    <label for="average">Average</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="active"
-				     name="activityLevel" value="3">
-				    <label for="active">Active</label>
-				</div>
+				<option value="1" selected>Sedentary</option>
+				<option value="2">Average</option>
+				<option value="3">Active</option>
 			<% } else if (currentUser.activityLevel == "2") {  %>
-				<div class="col-4">
-					<input type="radio" id="sedentary"
-				     name="activityLevel" value="1">
-				    <label for="sedentary">Sedentary</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="average"
-				     name="activityLevel" value="2" checked>
-				    <label for="average">Average</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="active"
-				     name="activityLevel" value="3">
-				    <label for="active">Active</label>
-				</div>
+				<option value="1">Sedentary</option>
+				<option value="2" selected>Average</option>
+				<option value="3">Active</option>
 			<% } else {  %>
-				<div class="col-4">
-					<input type="radio" id="sedentary"
-				     name="activityLevel" value="1">
-				    <label for="sedentary">Sedentary</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="average"
-				     name="activityLevel" value="2">
-				    <label for="average">Average</label>
-				</div>
-				<div class="col-4">
-				    <input type="radio" id="active"
-				     name="activityLevel" value="3" checked>
-				    <label for="active">Active</label>
-				</div>
+				<option value="1">Sedentary</option>
+				<option value="2">Average</option>
+				<option value="3" selected>Active</option>
 			<% } %>
-		</div>
+		</select>
 	</div>
 	
 	<% include partials/timezones %>

@@ -8,14 +8,16 @@
    <link rel="stylesheet" type="text/css" href="../styles/style.css">
  </head>
  <body>
- 	<div class="mainTitle">Nutri<span class="titleChar">F</span>oods</div>
+ 	<div class="mainBody">
+ 		<a class="mainTitle" href='/'>Nutri<span class="titleChar">F</span>oods</a>
 		<% include partials/navbar %>
-	<div class="container">
-	 	<% include partials/alerts %>
-	 	<% if(currentUser) { %>
+		<div class="container">
+		 	<% include partials/alerts %>
+		 	<% if(currentUser) { %>
 	 		<div id="currentUser" class="loggedIn"><%= currentUser.name %></div>
-	 	<% } %>
-		<%- body %>
+	 		<% } %>
+			<%- body %>
+		</div>
 	</div>
 	<% include partials/footer %>
  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
