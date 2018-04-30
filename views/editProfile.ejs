@@ -1,26 +1,26 @@
 <form id="updateProfile">
 	<div class="form-group">
-		<label for="name">Name</label>
+		<label for="name">Name:</label>
 		<%= currentUser.name %>
 	</div>
 	<div class="form-group">
-		<label for="email">Email</label>
+		<label for="email">Email:</label>
 		<%= currentUser.email %>
 	</div>
 	<div class="form-group">
-		<label for="height">Height</label>
+		<label for="height">Height:</label>
 		<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
 	</div>
 	<div class="form-group">
-		<label for="weight">Weight</label>
+		<label for="weight">Weight:</label>
 		<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
 	</div>
 	<div class="form-group">
-		<label for="age">Age</label>
+		<label for="age">Age:</label>
 		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
 	</div>
 	<div class="form-group">
-		<label for="gender">Gender</label>
+		<label for="gender">Gender:</label>
 		<select name="sex" id="gender" class="form-control">
 			<% if (currentUser.sex == "male") {  %>
 				<option value="male" selected>Male</option>
@@ -32,7 +32,7 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<label for="activity">Activity Level</label>
+		<label for="activity">Activity Level:</label>
 		<select name="activityLevel" id="activity" class="form-control">
 			<% if (currentUser.activityLevel == "1") {  %>
 				<option value="1" selected>Sedentary</option>

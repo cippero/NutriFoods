@@ -1,11 +1,16 @@
 <form id="searchForm">
 	<div class="searchBlock form-group row">
-		<div class="col-8" id="searchDiv">
+		<div class="col-9" id="searchDiv">
 			<input class="form-control searchBar" type="text" id ="searchInput" class="form-control" name="search" placeholder="Enter items to search" onInput="searchChange(this.value);" autocomplete="off" autofocus="true">
 
-		<!-- testing -->
 		</div>
-		<div class="col-8" id='searchResults'>
+		<div class="col-3">
+			<input type="submit" value="Search" class="btn-success btn">
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-9" id='searchResults'>
+		<!-- testing -->
 			<div class="quickSearch" data-name='${search.name}' data-toggle="modal" data-target="#foodInfo">
 				<b>Tomatoes</b>
 			</div>
@@ -24,26 +29,11 @@
 			<div class="quickSearch" data-name='${search.name}' data-toggle="modal" data-target="#foodInfo">
 				<b>Fries</b>
 			</div>
+			<div class="col-3"></div>
 		<!-- testing -->
-
-
-
-
-		</div>
-		<div class="col-4">
-			<input type="submit" value="Search" class="btn-success btn">
 		</div>
 	</div>
 </form>
-
-
-
-<div id='searchResults'>
-
-
-
-
-</div>
 
 
 
@@ -52,24 +42,54 @@
 
 
 	<!-- testing -->
-	<h3 class="mx-auto">5 large eggs</h3>
 	<div class="container nutrientBox">
-	  <div class="row">
-	    <div class="col-sm">
-	      <img class="border rounded-left border-info" src="https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg" width="250"></img>
+	  <div class="row picAndInfo">
+	    <div class="col-sm-3">
+	      <img class="pic" src="https://d2xdmhkmkbyw75.cloudfront.net/540_thumb.jpg" width="150"></img>
 	    </div>
-	    <div class="col-sm">
-	      <ul class="border rounded-right border-info">
-	        <li>Calories: 357.5</li>
-	        <li>Protein: 31.4</li>
-	        <li>Total Carbs: 1.8</li>
-	        <li>Sodium: 355</li>
-	        <li>Total Fat: 23.78</li>
-	      </ul>
+	    <div class="col-sm-9 picInfo">
+		    <ul>
+			    <li><h2 class="mx-auto">Eggs</h2></li>
+			    <li><span class="foodInfo">Quantity: 5 | Serving Unit: egg | Serving Weight: 30g</span></li>
+		    </ul>
+		    <hr>
 	    </div>
 	  </div>
+	  <div class="row">
+	  	<div class="col-sm-6 col-md-3 extraInfo">
+	  		<ul>
+			    <li>Calories: 357.5</li>
+			    <li>Protein: 31.4</li>
+	  		</ul>
+	  	</div>
+	  	<div class="col-sm-6 col-md-3 extraInfo">
+	  		<ul>
+		  		<li>Total Carbs: 1.8</li>
+		  		<li>Fiber: 5g</li>
+		  		<li>Sugar: 34g</li>
+	  		</ul>
+	  	</div>
+	  	<div class="col-sm-6 col-md-3 extraInfo">
+	  		<ul>
+		  		<li>Total Fat: 23.78</li>
+		  		<li>Saturated Fat: 5g</li>
+		  		<li>Cholesterol: 10g</li>
+	  		</ul>
+	  	</div>
+	  	<div class="col-sm-6 col-md-3 extraInfo">
+	  		<ul>
+		  		<li>Sodium: 355</li>
+		  		<li>Potassium: 123</li>
+	  		</ul>
+	  	</div>
+	  </div>
+	  <div class="row nutrientButtons">
+	  	<div class="col-sm-8"></div>
+	  	<div class="col-sm-1"><button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button></div>
+	  	<div class="col-sm-1"><button id="saveItem" type="button" name="button" class="btn btn-danger">Remove</button></div>
+	  	<div class="col-sm-2"></div>
+	  </div>
 	</div>
-	<button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button>
 	<!-- testing -->
 
 

@@ -29,7 +29,9 @@ html {
 	background-color: #fffbd8;
 }
 .nutrientBox {
-	background-color: #578da8;
+	background-color: white;
+	border-radius: 50px;
+	margin: 35px 0;
 }
 .searchBar {
 	width: 70%;
@@ -39,6 +41,7 @@ html {
 .searchBlock {
 	padding-top: 30px;
 	padding-bottom: 0;
+	margin-bottom: 0;
 }
 .btn {
 	font-size: 20px;
@@ -83,16 +86,49 @@ html {
 	margin: 0;
 	width: 70%;
 	float: right;
+	padding: 5px 10px;
 }
-
+.foodInfo {
+	text-align: justify;
+	font-size: 20px;
+}
+li {
+	list-style-type: none;
+	padding: 0;
+}
+ul {
+	margin: 0;
+	padding: 0;
+}
+.picInfo {
+	/*position: absolute;
+	bottom: 0;*/
+	padding-top: 68px;
+	/*background-color: #578da8;*/
+}
+.picAndInfo {
+	/*position: relative;*/
+/*	background-color: #ccd8e2;*/
+}
+.pic {
+	margin-left: -15px;
+	border-radius: 10px;
+}
+.extraInfo {
+	margin: 20px 0;
+	text-align: center;
+}
+.nutrientButtons {
+	padding-bottom: 20px;
+}
+.loginPage {
+	padding-top: 50px;
+}
 @media screen and (max-width: 600px) {
     .navLinks {
 		font-size: 24px;
 	}
 	.navBar {
 		padding: 0;
-	}
-	html {
-		background-color: purple;
 	}
 }

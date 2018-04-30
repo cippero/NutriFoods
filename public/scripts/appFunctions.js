@@ -94,7 +94,7 @@ function getNutrientHtml(item) {
 `<div class="container">
   <div class="row">
     <div class="col-sm">
-      <img class="float-right border rounded-left border-info" src=${item.photo} width="250"></img>
+      <img class="float-right border rounded-left border-info" src=${item.photo} width="200"></img>
     </div>
     <div class="col-sm">
       <ul class="border rounded-right border-info">
