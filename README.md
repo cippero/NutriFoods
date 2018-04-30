@@ -55,46 +55,46 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 | PUT           | /profile/edit     | Updates user profile               |
 
 ## Models
- User Schema
- | Key                  | Type         |
- |:---------------------|:-------------|
- | name                 | String       |
- | email                | String       |
- | password             | String       |
- | height               | Number       |
- | weight               | Number       |
- | age                  | Number       |
- | sex                  | String       |
- | activityLevel        | Number       |
- | timezone             | Boolean      |
- | food                 | [foodSchema] |
+User Schema
+| Key           | Type         |
+|:--------------|:-------------|
+| name          | String       | 
+| email         | String       | 
+| password      | String       | 
+| height        | Number       | 
+| weight        | Number       | 
+| age           | Number       | 
+| sex           | String       | 
+| activityLevel | Number       | 
+| timezone      | Number       | 
+| food          | [foodSchema] | 
  
- Food Schema
- | Key                  | Type   |
- |:---------------------|:-------|
- | food_name            | String |
- | brand_name           | String |
- | serving_qty          | Number |
- | serving_unit         | String |
- | serving_weight_grams | Number |
- | date                 | String |
- | time                 | String |
- | dateAndTime          | Number |
- | is_raw_food          | Boolean|
- | meal_type            | Number |
- | food_group           | Number |
- | ndb_no               | Number |
- | calories             | Number |
- | protein              | Number |
- | total_fat            | Number |
- | saturated_fat        | Number |
- | total_carbs          | Number |
- | fiber                | Number |
- | sugars               | Number |
- | cholesterol          | Number |
- | potassium            | Number |
- | sodium               | Number |
- | photo                | String |
+Food Schema
+| Key                  | Type   |
+|:---------------------|:-------|
+| food_name            | String |
+| brand_name           | String |
+| serving_qty          | Number |
+| serving_unit         | String |
+| serving_weight_grams | Number |
+| date                 | String |
+| time                 | String |
+| dateAndTime          | Number |
+| is_raw_food          | Boolean|
+| meal_type            | Number |
+| food_group           | Number |
+| ndb_no               | Number |
+| calories             | Number |
+| protein              | Number |
+| total_fat            | Number |
+| saturated_fat        | Number |
+| total_carbs          | Number |
+| fiber                | Number |
+| sugars               | Number |
+| cholesterol          | Number |
+| potassium            | Number |
+| sodium               | Number |
+| photo                | String |
 
 
 ## Workflow
