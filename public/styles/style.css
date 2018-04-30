@@ -80,6 +80,8 @@ html {
 }
 .footerDiv {
 	background-color: #516982;
+	font-size: 12px;
+	text-align: right;
 }
 .quickSearch {
 	background-color: white;

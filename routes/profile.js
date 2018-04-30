@@ -20,7 +20,7 @@ router.put('/update', isLoggedIn, function(req, res) {
 	//console.log('updating');
 	User.findOneAndUpdate({_id: res.locals.currentUser._id}, req.body, function(err, user) {
 		if (err) { return console.log("err:", err); }
-		res.render("profile");
+		res.render("profile", {currentPage: 'Profile'});
 	})
 })
 

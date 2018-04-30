@@ -26,11 +26,11 @@ router.post('/signup', function(req, res, next) {
 		if (err){
 			console.log("error:", err);
 			req.flash('error', 'Something went wrong! Check the logs.');
-			res.redirect('/auth/signup');
+			res.render('/auth/signup', {currentPage: 'Sign Up'});
 		} else if (user) {
 			// if user already exists don't let them sign up multiple times with same email
-			req.flash('error', 'You already exist');
-			res.redirect('/auth/login');
+			req.flash('error', 'User already exists');
+			res.render('/auth/login', {currentPage: 'Login'});
 		} else {
 			let newUser = req.body;
 			User.create(newUser, function(err, createdUser){
@@ -52,7 +52,7 @@ router.post('/signup', function(req, res, next) {
 router.get('/logout', function(req, res) {
 	req.logout();
 	req.flash('success', 'You are logged out. Byeeeee!');
-	res.redirect('/');
+	res.render('/', {currentPage: 'Search'});
 })
 
 module.exports = router;

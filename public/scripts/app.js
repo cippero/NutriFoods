@@ -62,7 +62,7 @@ $(document).ready(function() {
     foodToSearch = this.dataset.name;
   });
 
-///////////////// delete food item /////////////////
+//////////////// delete food from db ////////////////
   $(document).on("click", ".deleteFood", function(e) {
     $.ajax({
       method:   'DELETE'
@@ -70,8 +70,13 @@ $(document).ready(function() {
       ,success: deleteSuccess
       ,error:   deleteError
     }).then(() => {
-      $(this).parent().remove();
+      $(this).parent().parent().parent().remove();
     })
+  });
+
+////////////// remove food from list ///////////////
+  $(document).on("click", ".removeItem", function(e) {
+    $(this).parent().parent().parent().remove();
   });
 
 ///////////////// update profile /////////////////
