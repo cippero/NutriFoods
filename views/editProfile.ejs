@@ -1,56 +1,58 @@
-<form id="updateProfile">
-	<div class="form-group">
-		<label for="name">Name:</label>
-		<%= currentUser.name %>
-	</div>
-	<div class="form-group">
-		<label for="email">Email:</label>
-		<%= currentUser.email %>
-	</div>
-	<div class="form-group">
-		<label for="height">Height:</label>
-		<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
-	</div>
-	<div class="form-group">
-		<label for="weight">Weight:</label>
-		<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
-	</div>
-	<div class="form-group">
-		<label for="age">Age:</label>
-		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
-	</div>
-	<div class="form-group">
-		<label for="gender">Gender:</label>
-		<select name="sex" id="gender" class="form-control">
-			<% if (currentUser.sex == "male") {  %>
-				<option value="male" selected>Male</option>
-				<option value="female">Female</option>
-			<% } else { %>
-				<option value="male">Male</option>
-				<option value="female" selected>Female</option>
-			<% } %>
-		</select>
-	</div>
-	<div class="form-group">
-		<label for="activity">Activity Level:</label>
-		<select name="activityLevel" id="activity" class="form-control">
-			<% if (currentUser.activityLevel == "1") {  %>
-				<option value="1" selected>Sedentary</option>
-				<option value="2">Average</option>
-				<option value="3">Active</option>
-			<% } else if (currentUser.activityLevel == "2") {  %>
-				<option value="1">Sedentary</option>
-				<option value="2" selected>Average</option>
-				<option value="3">Active</option>
-			<% } else {  %>
-				<option value="1">Sedentary</option>
-				<option value="2">Average</option>
-				<option value="3" selected>Active</option>
-			<% } %>
-		</select>
-	</div>
-	
-	<% include partials/timezones %>
+<div class="container editProfile">
+	<form id="updateProfile">
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<%= currentUser.name %>
+		</div>
+		<div class="form-group">
+			<label for="email">Email:</label>
+			<%= currentUser.email %>
+		</div>
+		<div class="form-group">
+			<label for="height">Height:</label>
+			<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
+		</div>
+		<div class="form-group">
+			<label for="weight">Weight:</label>
+			<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
+		</div>
+		<div class="form-group">
+			<label for="age">Age:</label>
+			<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
+		</div>
+		<div class="form-group">
+			<label for="gender">Gender:</label>
+			<select name="sex" id="gender" class="form-control">
+				<% if (currentUser.sex == "male") {  %>
+					<option value="male" selected>Male</option>
+					<option value="female">Female</option>
+				<% } else { %>
+					<option value="male">Male</option>
+					<option value="female" selected>Female</option>
+				<% } %>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="activity">Activity Level:</label>
+			<select name="activityLevel" id="activity" class="form-control">
+				<% if (currentUser.activityLevel == "1") {  %>
+					<option value="1" selected>Sedentary</option>
+					<option value="2">Average</option>
+					<option value="3">Active</option>
+				<% } else if (currentUser.activityLevel == "2") {  %>
+					<option value="1">Sedentary</option>
+					<option value="2" selected>Average</option>
+					<option value="3">Active</option>
+				<% } else {  %>
+					<option value="1">Sedentary</option>
+					<option value="2">Average</option>
+					<option value="3" selected>Active</option>
+				<% } %>
+			</select>
+		</div>
+		
+		<% include partials/timezones %>
 
-	<input type="submit" value="Update" class="btn-success btn" form='updateProfile'>
-</form>
+		<input type="submit" value="Update" class="btn-success btn" form='updateProfile'>
+	</form>
+</div>

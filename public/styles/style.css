@@ -121,7 +121,7 @@ ul {
 .nutrientButtons {
 	padding-bottom: 20px;
 }
-.loginPage {
+.loginPage, .editProfile, .profilePage, .signupPage {
 	padding-top: 50px;
 }
 @media screen and (max-width: 600px) {

@@ -1,45 +1,47 @@
-<form method="POST" action="/auth/signup">
-	<div class="form-group">
-		<label for="name">Name:</label>
-		<input id="name" type="text" class="form-control" name="name" placeholder="Enter your name" required>
-	</div>
-	<div class="form-group">
-		<label for="email">Email:</label>
-		<input id="email" type="email" class="form-control" name="email" placeholder="Enter email" required>
-	</div>
-	<div class="form-group">
-		<label for="password">Password:</label>
-		<input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required>
-	</div>
-	<div class="form-group">
-		<label for="height">Height:</label>
-		<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" required>
-	</div>
-	<div class="form-group">
-		<label for="weight">Weight:</label>
-		<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" required>
-	</div>
-	<div class="form-group">
-		<label for="age">Age:</label>
-		<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" required>
-	</div>
-	<div class="form-group">
-		<label for="gender">Gender:</label>
-		<select name="sex" id="gender" class="form-control">
-			<option value="male" selected>Male</option>
-			<option value="female">Female</option>
-		</select>
-	</div>
-	<div class="form-group">
-		<label for="activity">Activity Level</label>
-		<select name="activityLevel" id="activity" class="form-control">
-			<option value="1">Sedentary</option>
-			<option value="2" selected>Average</option>
-			<option value="3">Active</option>
-		</select>
-	</div>
+<div class="container signupPage">
+	<form method="POST" action="/auth/signup">
+		<div class="form-group">
+			<label for="name">Name:</label>
+			<input id="name" type="text" class="form-control" name="name" placeholder="Enter your name" required>
+		</div>
+		<div class="form-group">
+			<label for="email">Email:</label>
+			<input id="email" type="email" class="form-control" name="email" placeholder="Enter email" required>
+		</div>
+		<div class="form-group">
+			<label for="password">Password:</label>
+			<input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required>
+		</div>
+		<div class="form-group">
+			<label for="height">Height:</label>
+			<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" required>
+		</div>
+		<div class="form-group">
+			<label for="weight">Weight:</label>
+			<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" required>
+		</div>
+		<div class="form-group">
+			<label for="age">Age:</label>
+			<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" required>
+		</div>
+		<div class="form-group">
+			<label for="gender">Gender:</label>
+			<select name="sex" id="gender" class="form-control">
+				<option value="male" selected>Male</option>
+				<option value="female">Female</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="activity">Activity Level</label>
+			<select name="activityLevel" id="activity" class="form-control">
+				<option value="1">Sedentary</option>
+				<option value="2" selected>Average</option>
+				<option value="3">Active</option>
+			</select>
+		</div>
 
-	<% include ../partials/timezones %>
+		<% include ../partials/timezones %>
 
-	<input type="submit" value="Sign Up" class="btn-success btn">
-</form>
+		<input type="submit" value="Sign Up" class="btn-success btn">
+	</form>
+</div>

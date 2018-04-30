@@ -1,34 +1,36 @@
-<h2>Welcome back, <%= currentUser.name %>!</h2>
+<div class="container profilePage">
+	<h2>Welcome back, <%= currentUser.name %>!</h2>
 
-<a href="/profile/edit" class="btn btn-info">EDIT PROFILE</a>
+	<a href="/profile/edit" class="btn btn-info">EDIT PROFILE</a>
 
 
-<div id='foodList'>
-</div>
-
-<% for (let i = currentUser.food.length-1; i > 0; i--) { %>
-	<div>
-		<ul>
-			<li>Name: <%= currentUser.food[i].food_name %></li>
-			<li>Amount: <%= currentUser.food[i].serving_qty %> 
-				<% if (currentUser.food[i].serving_unit !== currentUser.food[i].food_name) { %>
-					<%= currentUser.food[i].serving_unit %></li>
-				<% } else { %>
-					</li>
-				<% } %>
-			<li>Weight: <%= currentUser.food[i].serving_weight_grams %>g</li>
-			<li>Added On: <%= currentUser.food[i].date %>, <%= currentUser.food[i].time %></li>
-			<li>Calories: <%= currentUser.food[i].calories %></li>
-			<li>Protein: <%= currentUser.food[i].protein %></li>
-			<li>Total Fat: <%= currentUser.food[i].total_fat %></li>
-			<li>Saturated Fat: <%= currentUser.food[i].saturated_fat %></li>
-			<li>Total Carbs: <%= currentUser.food[i].total_carbs %></li>
-			<li>Sugars: <%= currentUser.food[i].sugars %></li>
-			<li>Dietary Fiber: <%= currentUser.food[i].fiber %></li>
-			<li>Potassium: <%= currentUser.food[i].potassium %></li>
-			<li>Sodium: <%= currentUser.food[i].sodium %></li>
-		</ul>
-		<button data-id=<%= currentUser.food[i].id %> type="button" name="button" class="btn btn-primary deleteFood">Delete</button>
-		<hr>
+	<div id='foodList'>
 	</div>
-<% } %>
+
+	<% for (let i = currentUser.food.length-1; i > 0; i--) { %>
+		<div>
+			<ul>
+				<li>Name: <%= currentUser.food[i].food_name %></li>
+				<li>Amount: <%= currentUser.food[i].serving_qty %> 
+					<% if (currentUser.food[i].serving_unit !== currentUser.food[i].food_name) { %>
+						<%= currentUser.food[i].serving_unit %></li>
+					<% } else { %>
+						</li>
+					<% } %>
+				<li>Weight: <%= currentUser.food[i].serving_weight_grams %>g</li>
+				<li>Added On: <%= currentUser.food[i].date %>, <%= currentUser.food[i].time %></li>
+				<li>Calories: <%= currentUser.food[i].calories %></li>
+				<li>Protein: <%= currentUser.food[i].protein %></li>
+				<li>Total Fat: <%= currentUser.food[i].total_fat %></li>
+				<li>Saturated Fat: <%= currentUser.food[i].saturated_fat %></li>
+				<li>Total Carbs: <%= currentUser.food[i].total_carbs %></li>
+				<li>Sugars: <%= currentUser.food[i].sugars %></li>
+				<li>Dietary Fiber: <%= currentUser.food[i].fiber %></li>
+				<li>Potassium: <%= currentUser.food[i].potassium %></li>
+				<li>Sodium: <%= currentUser.food[i].sodium %></li>
+			</ul>
+			<button data-id=<%= currentUser.food[i].id %> type="button" name="button" class="btn btn-primary deleteFood">Delete</button>
+			<hr>
+		</div>
+	<% } %>
+</div>
