@@ -56,6 +56,7 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 
 ## Models
 User Schema
+
 | Key           | Type         |
 |:--------------|:-------------|
 | name          | String       | 
@@ -70,6 +71,7 @@ User Schema
 | food          | [foodSchema] | 
  
 Food Schema
+
 | Key           | Type         |
 |:--------------|:-------------|
 | food_name            | String | 
