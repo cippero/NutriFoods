@@ -12,14 +12,18 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 
 ## Technologies and Tools
 * Sublime
-* Git * Github
+* Git & Github
 * HTML & CSS
 * JavaScript
 * Node.js
 * Express
 
 ## Workflow
-1. 
+1. Created the backend routes.
+1. Hooked up external API for getting food info.
+1. Set up frontend functionality for interacting with info fetched from backend.
+1. Styled the app.
+1. Fixed bugs.
 
 ## How to Improve
 1. Improve the design.
