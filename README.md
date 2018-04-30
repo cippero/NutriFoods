@@ -38,11 +38,21 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 * Auth/Bcrypt
 
 ## Routes
-| CRUD          | Route         | Functionality            |
-| ------------- |:-------------:| ------------------------:|
-| col 3 is      | right-aligned | $1600                    |
-| col 2 is      | centered      |   $12                    |
-| zebra stripes | are neat      |    $1                    |
+| CRUD          | Route             | Functionality                      |
+| ------------- |:-----------------:| ----------------------------------:|
+| GET           | /index            | Renders app homepage               |
+| POST          | /search           | Populates autocomplete list        |
+| POST          | /search/nutrients | Queries API for nutritional values |
+| POST          | /search/item      | Save item to database              |
+| DELETE        | /search/item/:id  | Deletes item from database         |
+| GET           | /auth/login       | Renders login page                 |
+| POST          | /auth/login       | Authenticate login credentials     |
+| GET           | /auth/signup      | Renders signup page                |
+| POST          | /auth/signup      | User creation route                |
+| GET           | /auth/logout      | User logout route                  |
+| GET           | /profile          | Renders profile page               |
+| GET           | /profile/edit     | Renders profile edit page          |
+| PUT           | /profile/edit     | Updates user profile               |
 
 ## Workflow
 1. Created the backend routes.
