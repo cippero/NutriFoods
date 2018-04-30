@@ -26,10 +26,23 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 ## Technologies and Tools
 * Sublime
 * Git & Github
-* HTML & CSS
+* HTML5 & CSS3
 * JavaScript
 * Node.js
 * Express
+* MongoDB
+* Mongoose
+* Bootstrap
+* jquery
+* EJS
+* Auth/Bcrypt
+
+## Routes
+| CRUD          | Route         | Functionality            |
+| ------------- |:-------------:| ------------------------:|
+| col 3 is      | right-aligned | $1600                    |
+| col 2 is      | centered      |   $12                    |
+| zebra stripes | are neat      |    $1                    |
 
 ## Workflow
 1. Created the backend routes.
