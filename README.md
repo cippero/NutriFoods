@@ -39,7 +39,7 @@ Enter meal/ingrediants and quantity directly into the search bar or select the f
 
 ## Routes
 | CRUD          | Route             | Functionality                      |
-| ------------- |:-----------------:| ----------------------------------:|
+|:--------------|:------------------|:-----------------------------------|
 | GET           | /index            | Renders app homepage               |
 | POST          | /search           | Populates autocomplete list        |
 | POST          | /search/nutrients | Queries API for nutritional values |
