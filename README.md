@@ -2,7 +2,7 @@
 # NutriFoodS
 
 ## Project Proposal
-NutriFoodS is an up for checking the nutritional values of meals and ingrediants and saving them to your profile.
+NutriFoodS is an app for checking the nutritional values of meals and ingrediants and saving them to your profile. API provided by [Nutritionix](https://developer.nutritionix.com/).
 
 ## Wireframes
 ![01_search](https://user-images.githubusercontent.com/37132245/39436404-c0a681ac-4c52-11e8-8b2f-44503a3d92d1.png)
