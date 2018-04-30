@@ -113,15 +113,15 @@ function getNutrientHtml(item) {
 
 if ($('#currentUser').hasClass('loggedIn')) {
       nutrientToPost += `<div class="col-sm-2"></div>
-      <div class="col-sm-1"><button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button></div>
+      <div class="col-sm-1"><button id="saveItem" type="button" name="button" class="btn btn-primary infoBtn">Save</button></div>
       <div class="col-sm-6"></div>
-      <div class="col-sm-1"><button type="button" name="button" class="btn btn-danger removeItem">Remove</button></div>
+      <div class="col-sm-1"><button type="button" name="button" class="btn btn-danger removeItem infoBtn">Remove</button></div>
       <div class="col-sm-2"></div>
     </div>
   </div>`;
     } else {
       nutrientToPost += `<div class="col-sm-9"></div>
-      <div class="col-sm-1"><button type="button" name="button" class="btn btn-danger removeItem">Remove</button></div>
+      <div class="col-sm-1"><button type="button" name="button" class="btn btn-danger removeItem infoBtn">Remove</button></div>
       <div class="col-sm-2"></div>
     </div>
   </div>`;
@@ -151,4 +151,3 @@ function updateError() {
 function updateSuccess() {
   console.log("update success");
 }
-

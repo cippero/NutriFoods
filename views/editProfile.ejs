@@ -1,28 +1,28 @@
 <div class="container editProfile">
 	<form id="updateProfile">
-		<div class="form-group">
+		<div class="form-group inputField">
 			<label for="name">Name:</label>
 			<%= currentUser.name %>
 		</div>
-		<div class="form-group">
+		<div class="form-group inputField">
 			<label for="email">Email:</label>
 			<%= currentUser.email %>
 		</div>
 		<div class="form-group">
-			<label for="height">Height:</label>
-			<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
+			<label class="inputField" for="height">Height:</label>
+			<input id="height" type="number" class="form-control inputField" name="height" placeholder="Enter height" value=<%= currentUser.height %> required>
 		</div>
 		<div class="form-group">
-			<label for="weight">Weight:</label>
-			<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
+			<label class="inputField" for="weight">Weight:</label>
+			<input id="weight" type="number" class="form-control inputField" name="weight" placeholder="Enter weight" value=<%= currentUser.weight %> required>
 		</div>
 		<div class="form-group">
-			<label for="age">Age:</label>
-			<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
+			<label class="inputField" for="age">Age:</label>
+			<input id="age" type="number" class="form-control inputField" name="age" placeholder="Enter age" value=<%= currentUser.age %> required>
 		</div>
 		<div class="form-group">
-			<label for="gender">Gender:</label>
-			<select name="sex" id="gender" class="form-control">
+			<label class="inputField" for="gender">Gender:</label>
+			<select name="sex" id="gender" class="form-control inputField">
 				<% if (currentUser.sex == "male") {  %>
 					<option value="male" selected>Male</option>
 					<option value="female">Female</option>
@@ -33,8 +33,8 @@
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="activity">Activity Level:</label>
-			<select name="activityLevel" id="activity" class="form-control">
+			<label class="inputField" for="activity">Activity Level:</label>
+			<select name="activityLevel" id="activity" class="form-control inputField">
 				<% if (currentUser.activityLevel == "1") {  %>
 					<option value="1" selected>Sedentary</option>
 					<option value="2">Average</option>
@@ -53,6 +53,6 @@
 		
 		<% include partials/timezones %>
 
-		<input type="submit" value="Update" class="btn-success btn" form='updateProfile'>
+		<input type="submit" value="Update" class="btn-success btn submitBtn" form='updateProfile'>
 	</form>
 </div>

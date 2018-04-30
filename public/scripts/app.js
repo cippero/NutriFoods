@@ -7,7 +7,6 @@ let foodToSearch = "";
 let modalInput = "";
 
 
-
 $(document).ready(function() {
   $searchItems = $('#searchResults');
   $nutrientResults = $('#nutrientResults');
@@ -78,7 +77,7 @@ $(document).ready(function() {
     e.preventDefault();
     $.ajax({
       method:   'PUT'
-      ,url:     '/profile/update'
+      ,url:     '/profile/edit'
       ,data:    $(this).serialize()
       ,success: updateSuccess
       ,error:   updateError

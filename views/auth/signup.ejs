@@ -1,39 +1,39 @@
 <div class="container signupPage">
 	<form method="POST" action="/auth/signup">
 		<div class="form-group">
-			<label for="name">Name:</label>
-			<input id="name" type="text" class="form-control" name="name" placeholder="Enter your name" required>
+			<label class="inputField" for="name">Name:</label>
+			<input id="name" type="text" class="form-control inputField" name="name" placeholder="Enter your name" required>
 		</div>
 		<div class="form-group">
-			<label for="email">Email:</label>
-			<input id="email" type="email" class="form-control" name="email" placeholder="Enter email" required>
+			<label class="inputField" for="email">Email:</label>
+			<input id="email" type="email" class="form-control inputField" name="email" placeholder="Enter email" required>
 		</div>
 		<div class="form-group">
-			<label for="password">Password:</label>
-			<input id="password" type="password" class="form-control" name="password" placeholder="Enter password" required>
+			<label class="inputField" for="password">Password:</label>
+			<input id="password" type="password" class="form-control inputField" name="password" placeholder="Enter password" required>
 		</div>
 		<div class="form-group">
-			<label for="height">Height:</label>
-			<input id="height" type="number" class="form-control" name="height" placeholder="Enter height" required>
+			<label class="inputField" for="height">Height:</label>
+			<input id="height" type="number" class="form-control inputField" name="height" placeholder="Enter height" required>
 		</div>
 		<div class="form-group">
-			<label for="weight">Weight:</label>
-			<input id="weight" type="number" class="form-control" name="weight" placeholder="Enter weight" required>
+			<label class="inputField" for="weight">Weight:</label>
+			<input id="weight" type="number" class="form-control inputField" name="weight" placeholder="Enter weight" required>
 		</div>
 		<div class="form-group">
-			<label for="age">Age:</label>
-			<input id="age" type="number" class="form-control" name="age" placeholder="Enter age" required>
+			<label class="inputField" for="age">Age:</label>
+			<input id="age" type="number" class="form-control inputField" name="age" placeholder="Enter age" required>
 		</div>
 		<div class="form-group">
-			<label for="gender">Gender:</label>
-			<select name="sex" id="gender" class="form-control">
+			<label class="inputField" for="gender">Gender:</label>
+			<select name="sex" id="gender" class="form-control inputField">
 				<option value="male" selected>Male</option>
 				<option value="female">Female</option>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="activity">Activity Level</label>
-			<select name="activityLevel" id="activity" class="form-control">
+			<label class="inputField" for="activity">Activity Level</label>
+			<select name="activityLevel" id="activity" class="form-control inputField">
 				<option value="1">Sedentary</option>
 				<option value="2" selected>Average</option>
 				<option value="3">Active</option>
@@ -42,6 +42,6 @@
 
 		<% include ../partials/timezones %>
 
-		<input type="submit" value="Sign Up" class="btn-success btn">
+		<input type="submit" value="Sign Up" class="btn-success btn submitBtn">
 	</form>
 </div>

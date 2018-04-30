@@ -12,7 +12,7 @@ router.get('/edit', isLoggedIn, function(req, res) {
 	res.render("editProfile", {currentPage: 'Edit Profile'});
 })
 
-router.put('/update', isLoggedIn, function(req, res) {
+router.put('/edit', isLoggedIn, function(req, res) {
 	//console.log('updating');
 	User.findOneAndUpdate({_id: res.locals.currentUser._id}, req.body, function(err, user) {
 		if (err) { return console.log("err:", err); }

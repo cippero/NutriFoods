@@ -1,5 +1,5 @@
 html {
-	background-color: #516982;
+	background-color: #ccd8e2;
 }
 .mainBody {
 	font-family: 'Comfortaa', cursive;
@@ -25,7 +25,7 @@ html {
 	padding-bottom: 0;
 	margin-bottom: 0;
 }
-.btn {
+.submitBtn {
 	font-size: 20px;
 }
 .mainTitle {
@@ -49,11 +49,11 @@ html {
 	color: white;
 }
 .navLinks {
-	font-size: 40px;
+	font-size: 24px;
 }
 .navBar {
 	background-color: #516982;
-	padding: 10px;
+	padding: 0;
 }
 .navbar-nav {
 	margin: 0 auto;
@@ -135,11 +135,59 @@ ul {
 .doge {
 	margin-top: 50px;
 }
-@media screen and (max-width: 600px) {
+@media all and (max-width: 991.98px) {
     .navLinks {
-		font-size: 24px;
+		font-size: 50px;
 	}
 	.navBar {
-		padding: 0;
+		padding: 30px;
+	}
+	.mainTitle {
+		font-size: 75px;
+	}
+	.titleChar {
+		font-size: 90px;
+	}
+	.searchBlock {
+		padding-top: 100px;
+	}
+	.searchBar {
+		width: 100%;
+		font-size: 40px;
+	}
+	.submitBtn {
+		font-size: 40px;
+	}
+	.quickSearch {
+		width: 100%;
+		padding: 5px 10px;
+		font-size: 40px;
+	}
+	.modal-title, .modalInput {
+		font-size: 40px;
+	}
+	.modalBtn {
+		font-size: 30px;
+	}
+	.mx-auto {
+		font-size: 40px;
+	}
+	.foodInfo {
+		font-size: 30px;
+	}
+	.extraInfo {
+		font-size: 24px;
+	}
+	.infoBtn {
+		font-size: 30px;
+	}
+	.inputField {
+		font-size: 40px;
+	}
+	select#gender.form-control.inputField, select#activity.form-control.inputField, select#sel1.form-control.inputField{
+		    height: 75px;
+	}
+	.welcome {
+		font-size: 50px;
 	}
 }
