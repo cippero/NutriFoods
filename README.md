@@ -70,32 +70,31 @@ User Schema
 | food          | [foodSchema] | 
  
 Food Schema
-| Key                  | Type   |
-|:---------------------|:-------|
-| food_name            | String |
-| brand_name           | String |
-| serving_qty          | Number |
-| serving_unit         | String |
-| serving_weight_grams | Number |
-| date                 | String |
-| time                 | String |
-| dateAndTime          | Number |
-| is_raw_food          | Boolean|
-| meal_type            | Number |
-| food_group           | Number |
-| ndb_no               | Number |
-| calories             | Number |
-| protein              | Number |
-| total_fat            | Number |
-| saturated_fat        | Number |
-| total_carbs          | Number |
-| fiber                | Number |
-| sugars               | Number |
-| cholesterol          | Number |
-| potassium            | Number |
-| sodium               | Number |
-| photo                | String |
-
+| Key           | Type         |
+|:--------------|:-------------|
+| food_name            | String | 
+| brand_name           | String | 
+| serving_qty          | Number | 
+| serving_unit         | String | 
+| serving_weight_grams | Number | 
+| date                 | String | 
+| time                 | String | 
+| dateAndTime          | Number | 
+| is_raw_food          | Boolean| 
+| meal_type            | Number | 
+| food_group           | Number | 
+| ndb_no               | Number | 
+| calories             | Number | 
+| protein              | Number | 
+| total_fat            | Number | 
+| saturated_fat        | Number | 
+| total_carbs          | Number | 
+| fiber                | Number | 
+| sugars               | Number | 
+| cholesterol          | Number | 
+| potassium            | Number | 
+| sodium               | Number | 
+| photo                | String | 
 
 ## Workflow
 1. Created the backend routes.
