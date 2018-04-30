@@ -52,7 +52,7 @@ router.post('/signup', function(req, res, next) {
 router.get('/logout', function(req, res) {
 	req.logout();
 	req.flash('success', 'You are logged out. Byeeeee!');
-	res.render('/', {currentPage: 'Search'});
+	res.redirect('/');
 })
 
 module.exports = router;

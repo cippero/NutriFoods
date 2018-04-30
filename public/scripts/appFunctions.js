@@ -1,9 +1,5 @@
-///////////////////////////////////////////////////////////
 ////////////////////// AUTOCOMPLETE ///////////////////////
-///////////////////////////////////////////////////////////
-
 function ejaxPost(text) {
-  // if (text !== '' && searchAuto) {
   if (text !== '') {
     $.ajax({
       method:   'POST'
@@ -19,7 +15,6 @@ function ejaxPost(text) {
 }
 
 function searchChange(input) {
-  // searchAuto = true;
   if (input.length > 2) { ejaxPost(input); }
   if (input.length == 0) { $searchItems.empty(); }
 }
@@ -30,9 +25,7 @@ function quantityChange(input) {
 
 function handleError(e) {
   console.log('POST fail', e);
-//   //$('#todoTarget').text('Failed to load todos, is the server working?');
 }
-
 function handleSuccess(json) {
   allSearches = json;
   render();
@@ -59,15 +52,10 @@ function getSearchHtml(search) {
       </div>`;
 }
 
-
-///////////////////////////////////////////////////////////
 ///////////////////// NUTRIENT INFO ///////////////////////
-///////////////////////////////////////////////////////////
-
 function onError(e) {
   console.log('POST fail', e);
 }
-
 function onSuccess(json) {
   nutrientsInItem = json;
   renderNutrients();
@@ -123,7 +111,6 @@ function getNutrientHtml(item) {
     </div>
     <div class="row nutrientButtons">`;
 
-
 if ($('#currentUser').hasClass('loggedIn')) {
       nutrientToPost += `<div class="col-sm-2"></div>
       <div class="col-sm-1"><button id="saveItem" type="button" name="button" class="btn btn-primary">Save</button></div>
@@ -139,72 +126,29 @@ if ($('#currentUser').hasClass('loggedIn')) {
     </div>
   </div>`;
     }
-
   return nutrientToPost;
 }
 
 function nutrientPostError(e) {
   console.log('nutrient POST fail', e);
 }
-
 function nutrientPostSuccess(json) {
   console.log("nutrient POST success");
 }
 
-///////////////////////////////////////////////////////////
 ///////////////////// DELETE ITEM /////////////////////////
-///////////////////////////////////////////////////////////
-
 function deleteError() {
   console.log("error deleting");
 }
-
 function deleteSuccess() {
   console.log("success deleting");
 }
 
-///////////////////////////////////////////////////////////
 ///////////////////// UPDATE ITEM /////////////////////////
-///////////////////////////////////////////////////////////
-
 function updateError() {
   console.log("update error");
 }
-
 function updateSuccess() {
   console.log("update success");
 }
-
-///////////////////////////////////////////////////////////
-///////////////// RENDER ORDERED LIST /////////////////////
-///////////////////////////////////////////////////////////
-
-// function listError() {
-//   console.log('error getting list');
-// }
-
-// function listSuccess(json) {
-//   listItems = json;
-//   renderFoods();
-// }
-
-// function renderFoods() {
-//   $listResults.empty();
-//   let foodsHtml = getFoodsHtml(listItems);
-//   $listResults.append(foodsHtml);
-// };
-
-// function getFoodsHtml(item) {
-//   return ``;
-// }
-
-// function nutrientPostError(e) {
-//   console.log('nutrient POST fail', e);
-// }
-
-// function nutrientPostSuccess(json) {
-//   console.log("nutrient POST success");
-// }
-
-
 

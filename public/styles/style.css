@@ -1,25 +1,7 @@
-/*@font-face {
-    font-family: 'liquidromregular';
-    src: url('liquidrom-webfont.woff2') format('woff2'),
-         url('liquidrom-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}*/
-
-@font-face {
-    font-family: 'driving_aroundregular';
-    src: url('drivingaround-webfont.woff2') format('woff2'),
-         url('drivingaround-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 html {
 	background-color: #516982;
 }
 .mainBody {
-	/*font-family: 'Gugi', cursive;*/
 	font-family: 'Comfortaa', cursive;
 	background-color: #ccd8e2;
 	padding-bottom: 100px;
@@ -47,8 +29,6 @@ html {
 	font-size: 20px;
 }
 .mainTitle {
-	/*font-family: 'liquidromregular';*/
-	/*font-family: 'driving_aroundregular';*/
 	font-family: 'Gugi', cursive;
 	display: block;
 	font-size: 85px;
@@ -103,14 +83,9 @@ ul {
 	padding: 0;
 }
 .picInfo {
-	/*position: absolute;
-	bottom: 0;*/
 	padding-top: 68px;
-	/*background-color: #578da8;*/
 }
 .picAndInfo {
-	/*position: relative;*/
-/*	background-color: #ccd8e2;*/
 }
 .pic {
 	margin-left: -15px;
@@ -125,6 +100,40 @@ ul {
 }
 .loginPage, .editProfile, .profilePage, .signupPage {
 	padding-top: 50px;
+}
+
+.body404 {
+	font-family: 'Press Start 2P', cursive;
+	color: white;
+}
+.title404 {
+	font-size: 100px;
+	text-align: center;
+	color: black;
+	margin-top: 30px;
+}
+.doge404 {
+	display: block;
+	margin: 0 auto;
+}
+.doge1 {
+	font-size: 50px;
+	color: red;
+}
+.doge2 {
+	font-size: 20px;
+	color: blue;
+}
+.doge3 {
+	font-size: 40px;
+	color: magenta;
+}
+.doge4 {
+	font-size: 30px;
+	color: yellow;
+}
+.doge {
+	margin-top: 50px;
 }
 @media screen and (max-width: 600px) {
     .navLinks {

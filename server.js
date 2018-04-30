@@ -23,7 +23,7 @@ app.use(session({
 	secret:            process.env.SESSION_SECRET,
 	resave:            false,
 	//saveUninitialized: true
-	saveUninitialized: false //testing
+	saveUninitialized: false
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -47,7 +47,7 @@ app.use('/search', require('./routes/search'));
 app.use('/profile', require('./routes/profile'));
 
 app.use(function(req, res){
-    res.status(404).send('<h1>404</h1>');
+    res.status(404).render('404', {currentPage: 'Search'});
 });
 
 ////////////////////LISTENING/////////////////////

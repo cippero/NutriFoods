@@ -8,10 +8,6 @@ router.get('/', isLoggedIn, function(req, res) {
 	res.render("profile", {currentPage: 'Profile'});
 })
 
-// router.get('/api', isLoggedIn, function(req, res) {
-// 	res.json(res.locals.currentUser.food);
-// })
-
 router.get('/edit', isLoggedIn, function(req, res) {
 	res.render("editProfile", {currentPage: 'Edit Profile'});
 })
